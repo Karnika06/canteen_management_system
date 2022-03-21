@@ -5,7 +5,8 @@ const sendToken = require("../utils/jwttoken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 
-//register a user
+
+//register an user
 exports.registerUser = catchAsyncError(async (req, res, next) => {
   const { name, email, password } = req.body;
 
