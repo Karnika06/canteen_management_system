@@ -1,0 +1,57 @@
+.top-bar{
+    width: 100%;
+    height: 50px;
+    background-color: black;
+    top: 0;
+    display: flex;
+    align-items: center;
+    font-family: 'Josefin Sans', 'sans-serif';
+}
+
+.logo{
+    height: 45px;
+    width: auto;
+}
+.top-center{
+    flex: 6;
+}
+
+.top-left{
+    margin-left: 2%;
+}
+
+.top-right{
+    margin-right: 2%;
+}
+.Menu{
+    margin-left: 85%;
+}
+.top-left, .top-right{
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-list {
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar-item {
+    margin-right: 20px;
+    font-size: 18px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.signUpRegister{
+    background-color: #f44336;
+    border: none;
+    border-radius: 5px;
+    padding: 5%;
+    
+}
