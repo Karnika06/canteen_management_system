@@ -1,4 +1,5 @@
 import React from 'react'
+import CartContainer from '../../components/mukteshwari/js/CartContainer'
 import MenuSection from '../../components/mukteshwari/js/MenuSection'
 import Navbar from '../../components/mukteshwari/js/Navbar'
 
@@ -7,6 +8,7 @@ export default function Mukteshwari() {
     <>
         <Navbar/>
         <MenuSection/>
+        <CartContainer/>
     </>
   )
 }
