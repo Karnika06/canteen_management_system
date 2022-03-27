@@ -1,6 +1,7 @@
 import React from 'react'
 import useViewport from "../../../viewport/useViewport";
 import { NavLink } from "react-router-dom";
+import "../css/Navbar.css"
 
 export default function Navbar() {
 

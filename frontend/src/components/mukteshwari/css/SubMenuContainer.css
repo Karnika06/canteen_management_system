@@ -1,0 +1,35 @@
+
+.subMenuContainer,  .viewAll{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.subMenuContainer h3{
+    font-size: 16px;
+    font-weight: 600;
+    color: #2a2b3c;
+}
+
+.subMenuContainer .viewAll p{
+    font-size: 16px;
+    color: #f8901c;
+    font-weight: 400;
+}
+
+.subMenuContainer .viewAll i{
+    background: #f8901c;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.subMenuContainer .viewAll i .MuiSvgIcon.root {
+    font-size: 16px;
+    color: #faf9fb;
+}

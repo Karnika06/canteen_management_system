@@ -1,0 +1,77 @@
+.rowMenuCard:hover, .rowMenuCard.active{
+    background: #f8901c;
+}
+
+.rowMenuCard {
+    width: 100px;
+    min-width: 100px;
+    height: 150px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+    transition: 0.5s;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+
+
+.rowMenuCard .imgBox{
+    width: 100%;
+    height: 75px;
+    
+    display: flex;
+    justify-content: center;
+    transition: 0.5s;
+}
+
+.rowMenuCard .imgBox img{
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    height: 100%;
+}
+
+.categoryName{
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.rowMenuCard h3{
+    color: #f8901c;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.5s;
+}
+
+.rowMenuCard:hover h3, .rowMenuCard.active h3{
+    color: #fff;
+}
+
+.rowMenuCard .loadMenu{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-radius: 5px;
+    background: #f8901c;
+    transition: 0.5s;
+}
+
+.rowMenuCard:hover .loadMenu, .rowMenuCard.active .loadMenu{
+    background: #fff;
+}
+
+.rowMenuCard .loadMenu .MuiSvgIcon-root {
+    font-size: 18px;
+    color: #faf9fb;
+}
+
+.rowMenuCard:hover .loadMenu .MuiSvgIcon-root, .rowMenuCard.active .loadMenu .MuiSvgIcon-root{
+    color: #f8901c;
+}
