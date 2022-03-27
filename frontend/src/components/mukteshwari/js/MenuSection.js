@@ -7,6 +7,7 @@ import MenuItemCard from "./MenuItemCard";
 import { useState } from "react";
 
 export default function MenuSection() {
+  
   const [isMainData, setMainData] = useState(Items);
 
   useEffect(() => {
