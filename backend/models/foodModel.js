@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const foodSchema = new mongoose.Schema({
+  
   food_name: {
     type: String,
     required: [true, "Please enter food name"],
@@ -45,6 +46,10 @@ const foodSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: "User",
     required: true
+  },
+  food_itemId: {
+    type: String,
+    required: [true, "Please enter category of food"]
   }
 });
 

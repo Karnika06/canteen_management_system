@@ -28,7 +28,7 @@
 .cartCheckoutContainer{
     width: 100%;
     min-width: 320px;
-    
+    position: relative;
 }
 
 .cartContainer {
@@ -46,7 +46,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
   }
-  
+
   .cartItems::-webkit-scrollbar {
     display: none;
   }
