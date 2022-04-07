@@ -3,15 +3,40 @@ import "./AddItem.css";
 
 function AddItem() {
   return (
-      <div className="AddItemForm">
-          <div className ="register">
-          <h2>ADD FOOD</h2>
-          <div className="form-row">
-                <label className="form-label">Food name</label>
-                <input className="form-control"/>
-          </div>
-          </div> 
-      </div>
+    <div className='main'>
+    <div className='form_container'>
+        <h2>Add Item</h2>
+        <table className="form_table">
+      <tbody>
+        <tr className='form-row'>
+          <td className="form-label">Food Name</td>
+          <input className='form-input' type="text" placeholder='Enter food name'></input>
+        </tr>
+
+        <tr className='form-row'>
+        <td className="form-label">Food Price</td>
+        <input className='form-input' type="number" placeholder='Enter food price'></input>
+        </tr>
+        <tr className='form-row'>
+        <td className="form-label">Food Quantity</td>
+        <input className='form-input' type="number" placeholder='Enter food quantity'></input>
+        </tr>
+        <tr className='form-row'>
+        <td className="form-label">Food Category</td>
+        <input className='form-input' type="text" placeholder='Enter food category'></input>
+        </tr>
+        <tr className='form-row'>
+        <td className="form-label">Food Image</td>
+        <input className='form-input' type="file" placeholder='Upload food image'></input>
+        </tr>
+      </tbody>
+    </table>
+    <div className="add_btn mt-2">
+      <button className="btn-feedback">Add item</button>
+    </div>
+        
+    </div>
+    </div>
   );
 }
 

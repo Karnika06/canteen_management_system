@@ -21,7 +21,7 @@ export default function Navbar() {
             <NavLink
               exact
               activeClassName="active_class"
-              to="/"
+              to="/mukteshwari"
               style={{ textDecoration: "none", color: "white" }}
             >
               Menu
@@ -31,7 +31,7 @@ export default function Navbar() {
             <NavLink
               exact
               activeClassName="active_class"
-              to="/about"
+              to="/mukteshwari/myorders"
               style={{ textDecoration: "none", color: "white" }}
             >
               My Orders
@@ -41,17 +41,28 @@ export default function Navbar() {
             <NavLink
               exact
               activeClassName="active_class"
-              to="/contact"
+              to="/mukteshwari/myProfile"
               style={{ textDecoration: "none", color: "white" }}
             >
-              Send Feedback
+              My Profile
             </NavLink>
           </li>
           <li className="navbar-item">
             <NavLink
               exact
               activeClassName="active_class"
-              to="/about"
+              to="/mukteshwari/sendFeedback"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              Send Feedback
+            </NavLink>
+          </li>
+          
+          <li className="navbar-item">
+            <NavLink
+              exact
+              activeClassName="active_class"
+              to="/mukteshwari/about"
               style={{ textDecoration: "none", color: "white" }}
             >
               About Us
@@ -61,7 +72,7 @@ export default function Navbar() {
             <NavLink
               exact
               activeClassName="active_class"
-              to="/about"
+              to="/mukteshwari/contact"
               style={{ textDecoration: "none", color: "white" }}
             >
               Contact Us
