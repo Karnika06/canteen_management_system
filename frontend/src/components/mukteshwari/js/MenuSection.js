@@ -5,12 +5,34 @@ import SubMenuContainer from "./SubMenuContainer";
 import { category, Items } from "./../../../Data/Category";
 import MenuItemCard from "./MenuItemCard";
 import { useState } from "react";
+import { getFooditem } from "../../../actions/foodAction";
+import { useSelector, useDispatch } from "react-redux";
+import FoodCard from "./Food.js";
 
 export default function MenuSection() {
+
+
+  const dispatch = useDispatch();
+
+const { loading, error, fooditems, fooditemCount } = useSelector(
+  (state) => state.fooditems
+);
+
+const [isMainData, setMainData] = useState(fooditems);
+
+useEffect(() => {
+
+  dispatch(getFooditem());
   
-  const [isMainData, setMainData] = useState(Items);
+  console.log("start", fooditems);
+  console.log(isMainData);
+}, [dispatch]);
+  
+  
 
   useEffect(() => {
+
+    
     //CategoryCard toggling
     const categoryCards = document
       .querySelector(".rowContainer")
@@ -24,13 +46,15 @@ export default function MenuSection() {
     categoryCards.forEach((n) =>
       n.addEventListener("click", setMenuCardActive)
     );
-  }, [isMainData]);
+  }, [fooditems]);
 
   //set main data according to category
   const setData = (itemId) => {
-    if (itemId === "all") setMainData(Items);
-    else setMainData(Items.filter((element) => element.itemId === itemId));
+  
+    if (itemId === "all") setMainData(fooditems);
+    else setMainData(fooditems.filter((element) => element.food_itemId === itemId));
   };
+
   return (
     <>
       <div className="menuContainer">
@@ -50,7 +74,19 @@ export default function MenuSection() {
             ))}
         </div>
         <div className="menuItemContainer">
-          {isMainData &&
+          {isMainData && isMainData.map((data) => (
+              <MenuItemCard
+                key={data._id}
+                itemId={data._id}
+                imgSrc={data.food_images[0].url}
+                name={data.food_name}
+                price={data.food_price}
+                desc={data.food_description}
+                qty={data.food_quantity}
+              />
+            ))}
+
+          {/* {isMainData &&
             isMainData.map((data) => (
               <MenuItemCard
                 key={data.id}
@@ -59,8 +95,13 @@ export default function MenuSection() {
                 name={data.name}
                 price={data.price}
                 desc={data.desc}
+                qty={data.qty}
               />
-            ))}
+            ))} */}
+
+          {/* {fooditems && fooditems.map((fooditem) => (
+          <FoodCard food={fooditem} />
+        ))}; */}
         </div>
       </div>
     </>

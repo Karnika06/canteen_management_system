@@ -6,7 +6,7 @@ const { connect } = require("./app");
 //uncaught exception error
 process.on("uncaughtException", (err)=> {
     console.log(`Error: ${err.message}`);
-    console.log(`Shutting down the server due to uncuaght exception error`);
+    console.log(`Shutting down the server due to uncaught exception error`);
 
     process.exit(1);
 });

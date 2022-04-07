@@ -12,6 +12,8 @@ import Login from './pages/landingPage/LogInRegister/Login';
 import Mukteshwari from './pages/Mukteshwari/Mukteshwari';
 import Spicybites from './pages/Spicybites/Spicybites';
 import FunFrolics from './pages/Fun&Frolics/Fun&Frolics';
+import AdminMukteshwari from './pages/Admin/AdminMukteshwari';
+import AddItem from './pages/Admin/AddItem';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path = "/mukteshwari" element={<Mukteshwari/>}/>
           <Route path = "/spicybites" element={<Spicybites/>}/>
           <Route path = "/funNfrolics" element={<FunFrolics/>}/>
+          <Route path = "/admin" element={<AdminMukteshwari/>}/>
+          <Route path = "/admin/additem" element={<AddItem/>}/>
         </Routes>
     </Router>
     </ViewportProvider>
