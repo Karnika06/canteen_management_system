@@ -47,7 +47,7 @@ const Register = () => {
       <section className="register">
         {/* <div className='container'> */}
         <div className="signup-image">
-          <img src="demo.jpg" alt="registration pic" />
+          <img src="loginRegister.jpeg" alt="registration pic" />
         </div>
         <div className="signup-content">
           <div className="signup-form">

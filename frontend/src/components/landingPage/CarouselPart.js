@@ -9,7 +9,7 @@ export default function CarouselPart() {
   <Carousel.Item interval={2000}>
     <img
       className="d-block w-100"
-      src="carousel1.jpg"
+      src="back.jpeg"
       alt="First slide"
       
     />

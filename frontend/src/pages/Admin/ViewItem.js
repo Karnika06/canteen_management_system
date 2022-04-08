@@ -1,14 +1,55 @@
 import "./ViewItem.css"
+import { getFooditem } from "../../actions/foodAction";
+import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
+
 
 function ViewItem() {
+
+  const dispatch = useDispatch();
+
+  const { loading, error, fooditems, fooditemCount } = useSelector(
+    (state) => state.fooditems
+  );
+
+  useEffect(() => {
+
+    dispatch(getFooditem());
+    
+    console.log("start", fooditems);
+    
+  }, [dispatch]);
+
+  let i = 1
   return (
     <div className="mt-5">
       <div className="container">
         <div className="add_btn mt-2 mb-2">
+        <NavLink
+              exact
+              activeClassName="active_class"
+              to="/admin/additem"
+            >
           <button className="btn btn-primary">Add item</button>
+          </NavLink>
         </div>
 
+        {/* <div className="menuItemContainer">
+          {fooditems && fooditems.map((data) => (
+              <MenuItemCard
+                key={data._id}
+                itemId={data._id}
+                imgSrc={data.food_images[0].url}
+                name={data.food_name}
+                price={data.food_price}
+                desc={data.food_description}
+                qty={data.food_quantity}
+              />
+            ))} */}
+
         <table class="table">
+          
           <thead>
             <tr className="table-dark">
               <th scope="col">id</th>
@@ -20,15 +61,18 @@ function ViewItem() {
             </tr>
           </thead>
           <tbody>
+          
+          {fooditems && fooditems.map((data) => (
+            
             <tr className="table-row">
-              <th scope="row">1</th>
+              <th scope="row">{i++}</th>
               <td className="image-container">
-                <img src='https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
+                <img src={data.food_images[0].url}
                 alt="food"/>
               </td>
-              <td>Burger</td>
-              <td>1234</td>
-              <td>21</td>
+              <td>{data.food_name}</td>
+              <td>{data.food_price}</td>
+              <td>{data.food_quantity}</td>
               <td className="view-edit-delete">
                 <button className="btn btn-success">
                   <i class="fas fa-eye"></i>
@@ -41,27 +85,7 @@ function ViewItem() {
                 </button>
               </td>
             </tr>
-            <tr className="table-row">
-              <th scope="row">2</th>
-              <td className="image-container">
-                <img src='https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
-                alt="food"/>
-              </td>
-              <td>Burger</td>
-              <td>1234</td>
-              <td>21</td>
-              <td className="view-edit-delete">
-                <button className="btn btn-success">
-                  <i class="fas fa-eye"></i>
-                </button>
-                <button className="btn btn-primary">
-                  <i class="fas fa-pen"></i>
-                </button>
-                <button className="btn btn-danger">
-                  <i class="fas fa-trash"></i>
-                </button>
-              </td>
-            </tr>
+            ))}
           </tbody>
         </table>
       </div>

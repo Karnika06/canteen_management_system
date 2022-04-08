@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function Footer() {
   return (
     <Footerdiv>
-      <div className="container footer">
+      <div className="container-footer">
         <div className="footer-logo">
           <img src="digitalLogo.png" alt="logo" />
         </div>
@@ -40,7 +40,7 @@ export default function Footer() {
 
 const Footerdiv = styled.div`
   background: hsl(260, 8%, 14%);
-  .footer {
+  .container-footer {
     padding: 3rem 0;
     padding-bottom: 1rem;
     display: flex;
