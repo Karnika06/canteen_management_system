@@ -56,7 +56,7 @@ export default function Login() {
                     </div>
                     </div>
                     <div className='login-image'>
-                            <img src='demo.jpg' alt='registration pic'/>
+                            <img src='loginRegister.jpeg' alt='registration pic'/>
                     </div>
                     
                     {/* </div> */}
