@@ -1,0 +1,44 @@
+.add_btn{
+    text-align: right;
+}
+
+.container{
+    overflow: auto;
+}
+
+.container .table{
+    text-align: center;
+}
+
+.image-container{
+    max-width: 150px;
+    max-height: 110px;
+}
+
+td{
+    vertical-align: middle;
+}
+
+.view-edit-delete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 116.5px;
+}
+
+
+
+.table-row{
+    height: 110px;
+    max-height: 110px;
+}
+
+.image-container img{
+    object-fit: contain;
+    max-width: 150px;
+    max-height: 110px;
+}
+
+.view-edit-delete{
+    justify-content: space-between;
+}

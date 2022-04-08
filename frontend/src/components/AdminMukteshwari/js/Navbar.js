@@ -21,7 +21,7 @@ export default function Navbar() {
             <NavLink
               exact
               activeClassName="active_class"
-              to="/admin/home"
+              to="/admin"
               style={{ textDecoration: "none", color: "white" }}
             >
               Home
@@ -41,7 +41,7 @@ export default function Navbar() {
             <NavLink
               exact
               activeClassName="active_class"
-              to="/viewitems"
+              to="/admin/viewitems"
               style={{ textDecoration: "none", color: "white" }}
             >
               View items
@@ -61,10 +61,20 @@ export default function Navbar() {
             <NavLink
               exact
               activeClassName="active_class"
-              to="/admin/orders"
+              to="/admin/orderhistory"
               style={{ textDecoration: "none", color: "white" }}
             >
               Order history
+            </NavLink>
+          </li>
+          <li className="navbar-item">
+            <NavLink
+              exact
+              activeClassName="active_class"
+              to="/admin/viewcustomer"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              View Customer
             </NavLink>
           </li>
         </ul>

@@ -9,11 +9,13 @@ import AboutUs from './pages/landingPage/AboutUs/AboutUs'
 import ContactUs from './pages/landingPage/ContactUs/ContactUs'
 import Register from './pages/landingPage/LogInRegister/Register';
 import Login from './pages/landingPage/LogInRegister/Login';
-import Mukteshwari from './pages/Mukteshwari/Mukteshwari';
-import Spicybites from './pages/Spicybites/Spicybites';
-import FunFrolics from './pages/Fun&Frolics/Fun&Frolics';
+import Mukteshwari from './pages/Customer/Mukteshwari';
+
 import AdminMukteshwari from './pages/Admin/AdminMukteshwari';
-import AddItem from './pages/Admin/AddItem';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+import Customer from './pages/Customer/Customer';
+
 
 function App() {
   return (
@@ -26,11 +28,9 @@ function App() {
           <Route exact path='/' element={<Landing/>}/>
           <Route path = "/register" element={<Register/>}/>
           <Route path ="/login" element={<Login/>}/>
-          <Route path = "/mukteshwari" element={<Mukteshwari/>}/>
-          <Route path = "/spicybites" element={<Spicybites/>}/>
-          <Route path = "/funNfrolics" element={<FunFrolics/>}/>
-          <Route path = "/admin" element={<AdminMukteshwari/>}/>
-          <Route path = "/admin/additem" element={<AddItem/>}/>
+          <Route path = "/mukteshwari/*" element={<Customer/>}/>
+          <Route path = "/admin/*" element={<AdminMukteshwari/>}/>
+          
         </Routes>
     </Router>
     </ViewportProvider>
