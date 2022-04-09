@@ -85,21 +85,21 @@
     color: #fff;
   }
   
-  input:focus,
+  .form-input:focus,
   textarea:focus {
     border: 1px solid #00fff0;
     color: #00fff0;
     transition: all 0.3s ease;
   }
   
-  input:focus::placeholder,
+  .form-input:focus::placeholder,
   textarea:focus::placeholder {
     padding-left: 4px;
     color: #00fff0;
     transition: all 0.3s ease;
   }
   
-  input:focus + i {
+  .form-input:focus + i {
     color: #00fff0;
     transition: all 0.3s ease;
   }

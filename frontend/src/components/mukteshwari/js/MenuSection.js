@@ -18,7 +18,6 @@ const { loading, error, fooditems, fooditemCount } = useSelector(
   (state) => state.fooditems
 );
 
-const [isMainData, setMainData] = useState(fooditems);
 
 useEffect(() => {
 
@@ -29,10 +28,12 @@ useEffect(() => {
 }, [dispatch]);
   
   
+const [isMainData, setMainData] = useState({});
 
   useEffect(() => {
 
-    
+    setMainData(fooditems);
+
     //CategoryCard toggling
     const categoryCards = document
       .querySelector(".rowContainer")
@@ -46,7 +47,7 @@ useEffect(() => {
     categoryCards.forEach((n) =>
       n.addEventListener("click", setMenuCardActive)
     );
-  }, [fooditems]);
+  }, [isMainData]);
 
   //set main data according to category
   const setData = (itemId) => {
@@ -74,7 +75,7 @@ useEffect(() => {
             ))}
         </div>
         <div className="menuItemContainer">
-          {isMainData && isMainData.map((data) => (
+          {isMainData.length !== 0 && isMainData.map((data) => (
               <MenuItemCard
                 key={data._id}
                 itemId={data._id}

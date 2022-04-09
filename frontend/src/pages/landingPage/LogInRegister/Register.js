@@ -12,9 +12,9 @@ const Register = () => {
     let name, value;
 
   const handleInput = (e) => {
-    console.log(e);
+    //console.log(e);
     name = e.target.name;
-    value = e.target;
+    value = e.target.value;
 
     setUser({...user, [name]:value});
   }
@@ -59,7 +59,7 @@ const Register = () => {
                 <input
                   type="text"
                   name="name"
-                  id="name"
+                  id="user_name"
                   autoCapitalize="off"
                   value={user.name}
                   onChange={handleInput}
@@ -71,7 +71,7 @@ const Register = () => {
                 <input
                   type="text"
                   name="email"
-                  id="name"
+                  id="user_email"
                   autoCapitalize="off"
                   value={user.email}
                   onChange={handleInput}
@@ -83,7 +83,7 @@ const Register = () => {
                 <input
                   type="number"
                   name="contact_no"
-                  id="name"
+                  id="user_contact"
                   autoCapitalize="off"
                   value={user.contact_no}
                   onChange={handleInput}
@@ -95,7 +95,7 @@ const Register = () => {
                 <input
                   type="password"
                   name="password"
-                  id="name"
+                  id="user_pass"
                   autoCapitalize="off"
                   value={user.password}
                   onChange={handleInput}
@@ -107,7 +107,7 @@ const Register = () => {
                 <input
                   type="password"
                   name="cpassword"
-                  id="name"
+                  id="user_cpass"
                   autoCapitalize="off"
                   value={user.cpassword}
                   onChange={handleInput}
