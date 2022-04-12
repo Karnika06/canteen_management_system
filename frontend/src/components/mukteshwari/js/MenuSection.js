@@ -24,15 +24,21 @@ useEffect(() => {
   dispatch(getFooditem());
   
   console.log("start", fooditems);
-  console.log(isMainData);
+  //console.log(isMainData);
 }, [dispatch]);
   
   
-const [isMainData, setMainData] = useState({});
+const [isMainData, setMainData] = useState(fooditems);
+
+/*useEffect(() => {
+  console.log(fooditems);
+  if(fooditems.length !== 0)
+    setMainData(fooditems);
+})*/
 
   useEffect(() => {
 
-    setMainData(fooditems);
+    //setMainData(fooditems);
 
     //CategoryCard toggling
     const categoryCards = document
@@ -75,7 +81,7 @@ const [isMainData, setMainData] = useState({});
             ))}
         </div>
         <div className="menuItemContainer">
-          {isMainData.length !== 0 && isMainData.map((data) => (
+          {isMainData.map((data) => (
               <MenuItemCard
                 key={data._id}
                 itemId={data._id}
