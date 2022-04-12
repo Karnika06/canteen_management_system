@@ -10,34 +10,27 @@ import { useSelector, useDispatch } from "react-redux";
 import FoodCard from "./Food.js";
 
 export default function MenuSection() {
-
-
   const dispatch = useDispatch();
 
-const { loading, error, fooditems, fooditemCount } = useSelector(
-  (state) => state.fooditems
-);
-
-
-useEffect(() => {
-
-  dispatch(getFooditem());
-  
-  console.log("start", fooditems);
-  //console.log(isMainData);
-}, [dispatch]);
-  
-  
-const [isMainData, setMainData] = useState(fooditems);
-
-/*useEffect(() => {
-  console.log(fooditems);
-  if(fooditems.length !== 0)
-    setMainData(fooditems);
-})*/
+  const { loading, error, fooditems, fooditemCount } = useSelector(
+    (state) => state.fooditems
+  );
 
   useEffect(() => {
+    dispatch(getFooditem());
 
+    console.log("start", fooditems);
+    //console.log(isMainData);
+  }, []);
+
+  const [isMainData, setMainData] = useState([]);
+
+  useEffect(() => {
+    console.log(fooditems);
+    if (fooditems.length !== 0) setMainData(fooditems);
+  }, [fooditems]);
+
+  useEffect(() => {
     //setMainData(fooditems);
 
     //CategoryCard toggling
@@ -57,9 +50,11 @@ const [isMainData, setMainData] = useState(fooditems);
 
   //set main data according to category
   const setData = (itemId) => {
-  
     if (itemId === "all") setMainData(fooditems);
-    else setMainData(fooditems.filter((element) => element.food_itemId === itemId));
+    else
+      setMainData(
+        fooditems.filter((element) => element.food_itemId === itemId)
+      );
   };
 
   return (
@@ -81,7 +76,8 @@ const [isMainData, setMainData] = useState(fooditems);
             ))}
         </div>
         <div className="menuItemContainer">
-          {isMainData.map((data) => (
+          {isMainData.length !== 0 &&
+            isMainData.map((data) => (
               <MenuItemCard
                 key={data._id}
                 itemId={data._id}
