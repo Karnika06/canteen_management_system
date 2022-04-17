@@ -8,6 +8,7 @@ import ViewItem from './ViewItem';
 import Home from './Home';
 import OrderHistory from './OrderHistory';
 import ViewCustomer from './ViewCustomer';
+import EditItem from './EditItem';
 
 function AdminMukteshwari() {
   return (
@@ -20,6 +21,8 @@ function AdminMukteshwari() {
           <Route path = "/viewitems" element={<ViewItem/>}/>
           <Route path = "/orderhistory" element={<OrderHistory/>}/>
           <Route path = "/viewcustomer" element={<ViewCustomer/>}/>
+          <Route path = "/edititem/:id" element={<EditItem/>}/>
+          
         </Routes>
     </>
   )

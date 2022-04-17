@@ -12,7 +12,8 @@ const router = express.Router();
 
 router.route("/fooditems").get(getAllItems);
 
-router.route("/admin/fooditem/new").post(isAuthenticatedUser, authorizeRoles("admin"), createItem);
+//router.route("/admin/fooditem/new").post(isAuthenticatedUser, authorizeRoles("admin"), createItem);
+router.route("/admin/fooditem/new").post( createItem);
 
 router
   .route("/admin/fooditem/:id")

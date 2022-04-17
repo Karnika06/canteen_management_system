@@ -158,20 +158,6 @@ section .login-content .login-form .form-group input[type="submit"]:hover{
 
 .validation-msgs{
     color: red;
-}
-
-.errorMessage{
     font-size: 12px;
-    color: red;
-    display: none;
 }
 
-.register-form-input:invalid[focused="true"]{
-
-    border: 1px solid red;
-}
-
-.register-form-input:invalid[focused="true"] ~ .errorMessage{
-    display:block;
-    
-}

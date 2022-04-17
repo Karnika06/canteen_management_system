@@ -1,7 +1,12 @@
 import React,{useState, useEffect} from 'react'
+import { useParams } from 'react-router-dom';
 import "./AddItem.css";
 
-function AddItem() {
+
+function EditItem() {
+
+    const {id} = useParams("");
+    console.log(id)
 
   const [ foodItem, setFoodItem] = useState({
     food_name:"", food_price:"" , food_quantity:"" , food_itemId:"", food_image:""});
@@ -32,8 +37,8 @@ const PostData = async (e) => {
 
   //posting data to backend
   const { food_name, food_description, food_price, food_quantity, food_itemId, food_image} = foodItem;
-  await fetch("http://localhost:4000/api/v1/admin/fooditem/new", {
-    method: "post",
+  await fetch(`http://localhost:4000/api/v1/admin/fooditem/${id}`, {
+    method: "put",
     headers: {
       "Content-Type": "application/json" 
     },
@@ -123,7 +128,7 @@ const PostData = async (e) => {
   return (
     <div className='main'>
     <div className='form_container'>
-        <h2>Add Item</h2>
+        <h2>Update Item</h2>
         <table className="form_table">
       <tbody>
         <tr className='form-row'>
@@ -166,7 +171,7 @@ const PostData = async (e) => {
       </tbody>
     </table>
     <div className="add_btn mt-2">
-      <button className="btn-feedback" onClick={handleSubmit} required>Add item</button>
+      <button className="btn-feedback" onClick={handleSubmit} required>Update item</button>
     </div>
         
     </div>
@@ -174,4 +179,4 @@ const PostData = async (e) => {
   );
 }
 
-export default AddItem;
+export default EditItem;

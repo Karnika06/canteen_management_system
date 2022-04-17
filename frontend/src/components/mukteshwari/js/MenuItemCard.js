@@ -9,25 +9,31 @@ import { getFooditem } from "../../../actions/foodAction";
 import { useSelector, useDispatch } from "react-redux";
 let cartData =[]
 
-function MenuItemCard({ imgSrc, name, price, desc, itemId }) {
+function MenuItemCard({ imgSrc, name, price, desc, itemId, ...item }) {
 
   const [isCart, setCart] = useState(null);
-  const[{}, dispatch] = useStateValue()
+  const[{cart}, dispatch] = useStateValue()
+  const [items, setItems] = useState([]);
+
 
   const { loading, error, fooditems, fooditemCount } = useSelector(
     (state) => state.fooditems
   );
 
-  useEffect(() => {
+  const addToCart = () => {
     
-    if(isCart){
-        cartData.push(isCart);
-        dispatch({
-          type: actionType.SET_CART,
-          cart: cartData,
-        })
-       }
-  }, [isCart]);
+    dispatch({
+      type: actionType.SET_CART,
+          cart: items,
+    })
+    //console.log(cart)
+  }
+
+  useEffect(() => {
+    addToCart()
+  },[items])
+
+
 
   return (
     <div className="itemCard" id={itemId}>
@@ -40,7 +46,8 @@ function MenuItemCard({ imgSrc, name, price, desc, itemId }) {
         <p className="description">{desc}</p>
         <div className="bottom">
           <h3 className="price">{price}</h3>
-          <i className="addToCart" onClick={() => setCart(fooditems.find((n) => n._id === itemId))}>
+          {/* <i className="addToCart" onClick={() => setCart(fooditems.find((n) => n._id === itemId))}> */}
+          <i className="addToCart" onClick={() => setItems([...cart, item])}>
             <AddRounded />
           </i>
         </div>

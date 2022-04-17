@@ -41,8 +41,6 @@ const Register = () => {
       name: "contact_no",
       type: "tel",
       placeholder: "Your Contact Number",
-      pattern: "^[0-9]{10}$",
-      errorMessage: "Contact number should have 10 digits",
       
       
     },
@@ -52,9 +50,6 @@ const Register = () => {
       name: "password",
       type: "password",
       placeholder: "New Password",
-      pattern: "^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,20}$",
-      errorMessage:
-        "Password should be 5-20 characters and include at least 1 letter, 1 number and 1 special character(no space)",
       
       
     },
@@ -64,8 +59,8 @@ const Register = () => {
       name: "cpassword",
       type: "password",
       placeholder: "Confirm Password",
-      pattern: user.password,
-      errorMessage: "Passwords don't match",
+     
+     
     },
   ];
   
@@ -82,7 +77,7 @@ const Register = () => {
     console.log(errors);
     if(Object.keys(errors).length === 0 && isSubmit){
         console.log(user);
-        //PostData(user);
+        PostData();
     }
 },[errors]);
 
@@ -95,24 +90,28 @@ const Register = () => {
   const PostData = async (e) => {
     
     
-    const { name, email, contact_no, password, cpassword } = user;
-    /*const res = await fetch("/register",{
+    const { name, email, contact_no, password} = user;
+    await fetch("http://localhost:4000/api/v1/register",{
       method: "POST",
       headers:{
         "Content-Type" : "application/json"
       },
       body: JSON.stringify({
-        name, email, contact_no, password, cpassword
+        name, email, contact_no, password
       })
-    });
+    }).then(res => res.json()).then(data => {
+      console.log(data)
+    }).catch(err => {
+      console.log(err)
+    })
 
-    const data = await res.json();
+    /* const data = await res.json();
     if(data.status === 422 || !data){
       window.alert("Invalid Registration");
     }else{
       window.alert("Successful Registration");
-      //history.push("/login");
-    }*/
+      history.push("/login");
+    } */
   };
 
   

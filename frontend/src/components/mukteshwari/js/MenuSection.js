@@ -81,11 +81,12 @@ export default function MenuSection() {
               <MenuItemCard
                 key={data._id}
                 itemId={data._id}
-                imgSrc={data.food_images[0].url}
+                imgSrc={data.food_image}
                 name={data.food_name}
                 price={data.food_price}
                 desc={data.food_description}
                 qty={data.food_quantity}
+                {...data}
               />
             ))}
 

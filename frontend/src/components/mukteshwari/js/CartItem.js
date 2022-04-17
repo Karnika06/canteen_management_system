@@ -10,27 +10,52 @@ function CartItem({ name,imgSrc,price, itemId}) {
 
     const [qty, setQty] = useState(1);
     const [{cart}, dispatch] = useStateValue();
+    const [items, setItems] = useState([]);
     const [itemPrice, setItemPrice] = useState(parseInt(qty) * parseInt(price));
 
+    const cartDispatch = () => {
+    
+        dispatch({
+          type: actionType.SET_CART,
+              cart: items,
+        })
+        console.log(cart)
+      }
+
     useEffect(() => {
-        cartItems = cart;
+        setItems(cart);
         setItemPrice(parseInt(qty) * parseInt(price));
     },[qty]);
 
     const updateQuantity = (action, id) => {
-        if(action === 'add')
+        if(action === 'add'){
             setQty(qty+1);
-        else{
-            if(qty == 0)
+            cart.map((item) => {
+                if(item._id === id){
+                    item.food_quantity -= 1;
+                }
+            })
+            cartDispatch();
+        }else{
+            if(qty == 1)
             {  
-                dispatch({
+                setItems(cart.filter((item) => item._id !== id))
+                cartDispatch();
+                /*dispatch({
                     type: actionType.SET_CART,
                     cart: cartItems.splice(id, 1),
-                })
+                })*/
             }
-            else
+            else{
             setQty(qty - 1);
-            }
+            cart.map((item) => {
+                if(item._id === id){
+                    item.food_quantity += 1;
+                }
+            })
+            cartDispatch();
+            }}
+            
         }
   return (
     <div className='cartItem'>

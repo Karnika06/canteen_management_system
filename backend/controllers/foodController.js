@@ -6,7 +6,8 @@ const ApiFeatures = require("../utils/apifeatures");
 //create food item (ADMIN)
 exports.createItem = catchAsyncErrors(async (req, res, next) => {
   
-  req.body.user = req.user.id;
+ 
+  //req.body.user = req.user.id;
 
   const fooditem = await Food.create(req.body);
 
@@ -18,7 +19,7 @@ exports.createItem = catchAsyncErrors(async (req, res, next) => {
 
 //get all food items
 exports.getAllItems = catchAsyncErrors(async (req, res) => {
-  const resultsPerPage = 10;
+  const resultsPerPage = 50;
 
   const fooditemCount = await Food.countDocuments();
 

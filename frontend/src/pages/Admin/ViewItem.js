@@ -3,6 +3,7 @@ import { getFooditem } from "../../actions/foodAction";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { Create, Delete, RemoveRedEye } from "@mui/icons-material";
 
 
 function ViewItem() {
@@ -35,19 +36,6 @@ function ViewItem() {
           </NavLink>
         </div>
 
-        {/* <div className="menuItemContainer">
-          {fooditems && fooditems.map((data) => (
-              <MenuItemCard
-                key={data._id}
-                itemId={data._id}
-                imgSrc={data.food_images[0].url}
-                name={data.food_name}
-                price={data.food_price}
-                desc={data.food_description}
-                qty={data.food_quantity}
-              />
-            ))} */}
-
         <table class="table">
           
           <thead>
@@ -67,7 +55,7 @@ function ViewItem() {
             <tr className="table-row">
               <th scope="row">{i++}</th>
               <td className="image-container">
-                <img src={data.food_images[0].url}
+                <img src={data.food_image}
                 alt="food"/>
               </td>
               <td>{data.food_name}</td>
@@ -75,13 +63,21 @@ function ViewItem() {
               <td>{data.food_quantity}</td>
               <td className="view-edit-delete">
                 <button className="btn btn-success">
-                  <i class="fas fa-eye"></i>
+                <RemoveRedEye/>
                 </button>
+
+                <NavLink
+              exact
+              activeClassName="active_class"
+              to={`/admin/edititem/${data._id}`}
+            >
                 <button className="btn btn-primary">
-                  <i class="fas fa-pen"></i>
+                  <Create/>
                 </button>
+                </NavLink>
+
                 <button className="btn btn-danger">
-                  <i class="fas fa-trash"></i>
+                  <Delete/>
                 </button>
               </td>
             </tr>
