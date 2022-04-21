@@ -6,9 +6,10 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   CLEAR_ERRORS,
+  LOGOUT
 } from "../constants/userConstants";
 
-export const userReducer = (state = { user: {} }, action) => {
+export const userReducer = (state = { User: {} }, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
     case REGISTER_REQUEST:
@@ -23,7 +24,8 @@ export const userReducer = (state = { user: {} }, action) => {
         ...state,
         loading: false,
         isAuthenticated: true,
-        user: action.payload,
+        User: action.payload,
+        
       };
 
     case LOGIN_FAIL:
@@ -32,9 +34,16 @@ export const userReducer = (state = { user: {} }, action) => {
         ...state,
         loading: false,
         isAuthenticated: false,
-        user: null,
+        User: null,
         error: action.payload,
       };
+
+    case LOGOUT:
+        return {
+          ...state,
+          isAuthenticated: false,
+          User: null,
+        };
 
     case CLEAR_ERRORS:
       return {

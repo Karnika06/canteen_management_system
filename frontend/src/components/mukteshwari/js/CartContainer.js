@@ -27,8 +27,9 @@ function CartContainer() {
                key = {data._id}
                itemId = {data._id}
                 name={data.food_name}
-                imgSrc={data.food_images[0].url}
+                imgSrc={data.food_image}
                 price={data.food_price}
+                
               />
             ))
           }

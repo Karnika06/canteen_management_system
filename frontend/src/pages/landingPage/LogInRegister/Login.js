@@ -18,11 +18,13 @@ export default function Login() {
         dispatch(login(loginEmail, loginPassword));
     };
 
-    const { loading, error, isAuthenticated } = useSelector(
+    //const { userDetails } = useSelector((state) => ({ ...user }));
+
+    const { loading, error, isAuthenticated, User } = useSelector(
         (state) => state.user
       );
 
-  const [user, setUser] = useState({
+  const [userDetail, setUserDetail] = useState({
     email: "",
     password: "",
   });
@@ -36,22 +38,27 @@ export default function Login() {
     name = e.target.name;
     value = e.target.value;
 
-    setUser({ ...user, [name]: value });
+    setUserDetail({ ...userDetail, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(validate(user));
+    setErrors(validate(userDetail));
     setIsSubmit(true);
   };
 
   useEffect(() => {
     console.log(errors);
     if (Object.keys(errors).length === 0 && isSubmit) {
-      console.log(user);
+      console.log(userDetail);
     }
     if(isAuthenticated) {
-        navigate(`/me`);
+        console.log(User)
+        if(User.user.role === 'admin'){
+            navigate('/admin')
+        } else{
+            navigate(`/`);
+        }
     }
   }, [errors, navigate, isAuthenticated]);
 
@@ -61,15 +68,15 @@ export default function Login() {
     const passRegex =
       /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,20}$/i;
 
-    if (!user.email) {
+    if (!userDetail.email) {
       errors.email = "Email is required!";
-    } else if (!regexForEmail.test(user.email)) {
+    } else if (!regexForEmail.test(userDetail.email)) {
       errors.email = "Not a valid email format!";
     }
 
-    if (!user.password) {
+    if (!userDetail.password) {
       errors.password = "Password is required!";
-    } else if (!passRegex.test(user.password)) {
+    } else if (!passRegex.test(userDetail.password)) {
       errors.password =
         "Password should be 5-20 characters and include at least 1 letter, 1 number and 1 special character(no space)";
     }

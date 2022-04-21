@@ -16,21 +16,16 @@ const foodSchema = new mongoose.Schema({
     required: [true, "Please enter food price"],
     maxlength: [8, "Price cannot exceed 8 characters"],
   },
-  food_images: [
-    {
-      public_id: {
-        type: String,
-        required: true,
-      },
-      url: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
+  food_image: {
+      type: String,
+      required: true,
+  },
+    
+  
   canteen_name: {
     type: String,
-    required: [true, "Please enter canteen name"],
+    default: "Mukku"
+    //required: [true, "Please enter canteen name"],
   },
   food_quantity: {
     type: Number,
@@ -45,7 +40,7 @@ const foodSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
-    required: true
+    
   },
   food_itemId: {
     type: String,

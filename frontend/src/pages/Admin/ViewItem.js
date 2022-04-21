@@ -1,16 +1,22 @@
 import "./ViewItem.css"
 import { getFooditem } from "../../actions/foodAction";
 import { useSelector, useDispatch } from "react-redux";
+import axios from 'axios';
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { Create, Delete, RemoveRedEye } from "@mui/icons-material";
 
 
 function ViewItem() {
 
   const dispatch = useDispatch();
 
-  const { loading, error, fooditems, fooditemCount } = useSelector(
+  const {  fooditems, fooditemCount } = useSelector(
     (state) => state.fooditems
+  );
+
+  const { loading, error, isAuthenticated, User } = useSelector(
+    (state) => state.user
   );
 
   useEffect(() => {
@@ -20,6 +26,25 @@ function ViewItem() {
     console.log("start", fooditems);
     
   }, [dispatch]);
+
+  const deleteUser = async (id) => {
+
+    await axios.delete(`http://localhost:4000/api/v1/admin/fooditem/${id}`,
+    {
+      headers: {
+        authorization: User.token,
+        "Content-Type": "application/json" 
+      }
+    }).then((res) =>{
+        console.log(res.data)
+        dispatch(getFooditem());
+        alert("Item deleted Successfully!!")
+      }).catch(err => {
+        console.log(err)
+      })
+
+    }
+  
 
   let i = 1
   return (
@@ -34,19 +59,6 @@ function ViewItem() {
           <button className="btn btn-primary">Add item</button>
           </NavLink>
         </div>
-
-        {/* <div className="menuItemContainer">
-          {fooditems && fooditems.map((data) => (
-              <MenuItemCard
-                key={data._id}
-                itemId={data._id}
-                imgSrc={data.food_images[0].url}
-                name={data.food_name}
-                price={data.food_price}
-                desc={data.food_description}
-                qty={data.food_quantity}
-              />
-            ))} */}
 
         <table class="table">
           
@@ -67,21 +79,35 @@ function ViewItem() {
             <tr className="table-row">
               <th scope="row">{i++}</th>
               <td className="image-container">
-                <img src={data.food_images[0].url}
+                <img src={data.food_image}
                 alt="food"/>
               </td>
               <td>{data.food_name}</td>
               <td>{data.food_price}</td>
               <td>{data.food_quantity}</td>
               <td className="view-edit-delete">
+              <NavLink
+              exact
+              activeClassName="active_class"
+              to={`/admin/view-single-item/${data._id}`}
+            >
+          
                 <button className="btn btn-success">
-                  <i class="fas fa-eye"></i>
+                <RemoveRedEye/>
                 </button>
+                </NavLink>
+                <NavLink
+              exact
+              activeClassName="active_class"
+              to={`/admin/edititem/${data._id}`}
+            >
                 <button className="btn btn-primary">
-                  <i class="fas fa-pen"></i>
+                  <Create/>
                 </button>
-                <button className="btn btn-danger">
-                  <i class="fas fa-trash"></i>
+                </NavLink>
+
+                <button className="btn btn-danger" onClick={() => deleteUser(data._id)}>
+                  <Delete/>
                 </button>
               </td>
             </tr>

@@ -13,10 +13,11 @@ const router = express.Router();
 router.route("/fooditems").get(getAllItems);
 
 router.route("/admin/fooditem/new").post(isAuthenticatedUser, authorizeRoles("admin"), createItem);
+//router.route("/admin/fooditem/new").post( createItem);
 
 router
   .route("/admin/fooditem/:id")
-  .put(isAuthenticatedUser, authorizeRoles("admin"), updateItem)
+  .patch(isAuthenticatedUser, authorizeRoles("admin"), updateItem)
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteitem);
 
 router.route("/fooditem/:id").get(getItemDetails);
