@@ -7,7 +7,7 @@ const ApiFeatures = require("../utils/apifeatures");
 exports.createItem = catchAsyncErrors(async (req, res, next) => {
   
  
-  //req.body.user = req.user.id;
+  req.body.user = req.user.id;
 
   const fooditem = await Food.create(req.body);
 
@@ -83,6 +83,6 @@ exports.getItemDetails = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     fooditem,
-    fooditemCount
+    //fooditemCount
   });
 });

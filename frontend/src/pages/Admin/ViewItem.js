@@ -1,6 +1,7 @@
 import "./ViewItem.css"
 import { getFooditem } from "../../actions/foodAction";
 import { useSelector, useDispatch } from "react-redux";
+import axios from 'axios';
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Create, Delete, RemoveRedEye } from "@mui/icons-material";
@@ -10,8 +11,12 @@ function ViewItem() {
 
   const dispatch = useDispatch();
 
-  const { loading, error, fooditems, fooditemCount } = useSelector(
+  const {  fooditems, fooditemCount } = useSelector(
     (state) => state.fooditems
+  );
+
+  const { loading, error, isAuthenticated, User } = useSelector(
+    (state) => state.user
   );
 
   useEffect(() => {
@@ -21,6 +26,25 @@ function ViewItem() {
     console.log("start", fooditems);
     
   }, [dispatch]);
+
+  const deleteUser = async (id) => {
+
+    await axios.delete(`http://localhost:4000/api/v1/admin/fooditem/${id}`,
+    {
+      headers: {
+        authorization: User.token,
+        "Content-Type": "application/json" 
+      }
+    }).then((res) =>{
+        console.log(res.data)
+        dispatch(getFooditem());
+        alert("Item deleted Successfully!!")
+      }).catch(err => {
+        console.log(err)
+      })
+
+    }
+  
 
   let i = 1
   return (
@@ -62,10 +86,16 @@ function ViewItem() {
               <td>{data.food_price}</td>
               <td>{data.food_quantity}</td>
               <td className="view-edit-delete">
+              <NavLink
+              exact
+              activeClassName="active_class"
+              to={`/admin/view-single-item/${data._id}`}
+            >
+          
                 <button className="btn btn-success">
                 <RemoveRedEye/>
                 </button>
-
+                </NavLink>
                 <NavLink
               exact
               activeClassName="active_class"
@@ -76,7 +106,7 @@ function ViewItem() {
                 </button>
                 </NavLink>
 
-                <button className="btn btn-danger">
+                <button className="btn btn-danger" onClick={() => deleteUser(data._id)}>
                   <Delete/>
                 </button>
               </td>

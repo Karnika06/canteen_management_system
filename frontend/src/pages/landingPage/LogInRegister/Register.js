@@ -2,16 +2,22 @@ import React, { useState, useEffect } from "react";
 import "./LoginRegister.css";
 import { Link } from "react-router-dom";
 import Navbar from "../../../components/shared/Navbar";
-
+import { useDispatch, useSelector } from "react-redux";
+import { clearErrors, register } from "../../../actions/userAction";
 
 const Register = () => {
+  const dispatch = useDispatch();
+
+  const { loading, error, isAuthenticated } = useSelector(
+    (state) => state.user
+  );
+
   //const history = useHistory();
   const [user, setUser] = useState({
     name: "",
     email: "",
     contact_no: "",
     password: "",
-    cpassword: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -81,15 +87,7 @@ const Register = () => {
     }
 },[errors]);
 
-  const handleSubmit  = (e) => {
-    e.preventDefault();
-    setErrors(validate(user));
-    setIsSubmit(true);
-}
-
-  const PostData = async (e) => {
-    
-    
+  const PostData  = async (e) => {
     const { name, email, contact_no, password} = user;
     await fetch("http://localhost:4000/api/v1/register",{
       method: "POST",
@@ -112,9 +110,19 @@ const Register = () => {
       window.alert("Successful Registration");
       history.push("/login");
     } */
+
   };
 
+
   
+
+    const handleSubmit  = (e) => {
+      e.preventDefault();
+      setErrors(validate(user));
+      setIsSubmit(true);
+  }
+
+
 
   const validate = () => {
     const errors = {};

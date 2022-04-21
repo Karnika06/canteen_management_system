@@ -9,6 +9,8 @@ import Register from './LogInRegister/Register'
 
 
 export default function Landing() {
+
+  
   return (
     <>
         <Navbar/>
