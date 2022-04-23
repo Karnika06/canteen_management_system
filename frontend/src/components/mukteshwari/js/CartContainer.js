@@ -1,11 +1,35 @@
-import { useStateValue } from "../../../CartReducer/StateProvider";
+import { useStateValue } from "../../../reducers/StateProvider";
 import "../css/CartContainer.css";
 import CartItem from "./CartItem";
 import SubMenuContainer from "./SubMenuContainer";
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from 'react'
+
 
 function CartContainer() {
 
-    const [{cart}, dispatch] = useStateValue();
+    const [price, setPrice] = useState(0)
+    const cart = useSelector((state) => state.cartReducer.carts)
+    
+    const total = () => {
+      let price = 0;
+      cart.map((item, key) => {
+        
+        price = price + item.food_price * item.qty;
+      })
+      setPrice(price)
+    }
+
+
+    useEffect(() => {
+    
+      total();      
+    }, [total])
+
+    
+    
+    
+
   return (
     <div className="rightMenu">
       <div className="debitCard">
@@ -15,8 +39,8 @@ function CartContainer() {
         />
       </div>
 
-      {!cart ? (<div></div>) : 
-      (<div className="cartCheckoutContainer">
+      {/* {!cart ? (<div></div>) :  */}
+      <div className="cartCheckoutContainer">
       <SubMenuContainer name={"Carts Items"} style={{height:"20px"}}/>
       <div className="cartContainer">
         <div className="cartItems">
@@ -29,7 +53,7 @@ function CartContainer() {
                 name={data.food_name}
                 imgSrc={data.food_image}
                 price={data.food_price}
-                
+                {...data}
               />
             ))
           }
@@ -39,12 +63,12 @@ function CartContainer() {
         <div className="totalSection">
           <h3>Total</h3>
           <p>
-            <span>Rs.</span> 34
+            <span>Rs.</span>{price}
           </p>
         </div>
-        <button className="checkout">Checkout</button>
-      </div>)
-      }
+        <button className="checkout" onClick={console.log("Cart = ", cart)}>Checkout</button>
+      </div>
+      
       
     </div>
   );

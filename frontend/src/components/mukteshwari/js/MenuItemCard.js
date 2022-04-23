@@ -2,38 +2,18 @@ import { AddRounded } from "@mui/icons-material";
 import React from "react";
 import { useState, useEffect } from "react";
 import "../css/MenuItemCard.css";
-import {Items} from "../../../Data/Category";
-import {useStateValue} from "../../../CartReducer/StateProvider"
-import { actionType } from "../../../CartReducer/reducer";
-import { getFooditem } from "../../../actions/foodAction";
+
 import { useSelector, useDispatch } from "react-redux";
-let cartData =[]
+import { AddItemsToCart } from "../../../actions/cartAction";
 
 function MenuItemCard({ imgSrc, name, price, desc, itemId, ...item }) {
+  const dispatch = useDispatch();
 
-  const [isCart, setCart] = useState(null);
-  const[{cart}, dispatch] = useStateValue()
-  const [items, setItems] = useState([]);
-
-
-  const { loading, error, fooditems, fooditemCount } = useSelector(
-    (state) => state.fooditems
-  );
-
-  const addToCart = () => {
-    
-    dispatch({
-      type: actionType.SET_CART,
-          cart: items,
-    })
-    //console.log(cart)
-  }
-
-  useEffect(() => {
-    addToCart()
-  },[items])
-
-
+  const sendToCart = (e) => {
+    e.qty = 0;
+    //console.log(e)
+    dispatch(AddItemsToCart(e));
+  };
 
   return (
     <div className="itemCard" id={itemId}>
@@ -46,8 +26,8 @@ function MenuItemCard({ imgSrc, name, price, desc, itemId, ...item }) {
         <p className="description">{desc}</p>
         <div className="bottom">
           <h3 className="price">{price}</h3>
-          {/* <i className="addToCart" onClick={() => setCart(fooditems.find((n) => n._id === itemId))}> */}
-          <i className="addToCart" onClick={() => setItems([...cart, item])}>
+
+          <i className="addToCart" onClick={() => sendToCart(item)}>
             <AddRounded />
           </i>
         </div>
