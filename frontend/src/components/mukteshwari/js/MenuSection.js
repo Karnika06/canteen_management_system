@@ -16,6 +16,9 @@ export default function MenuSection() {
     (state) => state.fooditems
   );
 
+  const getdata = useSelector((state) => state.cartReducer.carts)
+  console.log(getdata)
+
   useEffect(() => {
     dispatch(getFooditem());
 
