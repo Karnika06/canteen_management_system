@@ -1,6 +1,10 @@
 import './SendFeedback.css'
 
 function SendFeedback() {
+  // const [feedback, setFeedback] = useState({
+  //   feedback_email: "",
+  //   feedback_message: "",
+  // });
   return (
     <div className='main'>
         <div className='form_container'>

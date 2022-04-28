@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./LoginRegister.css";
-import { Link } from "react-router-dom";
+import { Link , Navigate, useNavigate } from "react-router-dom";
 import Navbar from "../../../components/shared/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, register } from "../../../actions/userAction";
 
 const Register = () => {
+  
   const dispatch = useDispatch();
+  let navigate = useNavigate();
 
   const { loading, error, isAuthenticated } = useSelector(
     (state) => state.user
@@ -99,6 +101,7 @@ const Register = () => {
       })
     }).then(res => res.json()).then(data => {
       console.log(data)
+      navigate('/')
     }).catch(err => {
       console.log(err)
     })
