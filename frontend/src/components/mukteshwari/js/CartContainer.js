@@ -66,7 +66,7 @@ function CartContainer() {
             <span>Rs.</span>{price}
           </p>
         </div>
-        <button className="checkout" onClick={console.log("Cart = ", cart)}>Checkout</button>
+        <button className="checkout" >Checkout</button>
       </div>
       
       

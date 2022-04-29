@@ -11,7 +11,7 @@ function ViewSingleItem() {
   const getData = async () => {
   
     //getting data from backend
-    await fetch(`http://localhost:4000/api/v1//fooditem/${id}`, {
+    await fetch(`http://localhost:4000/api/v1/fooditem/${id}`, {
       method: "get",
       headers: {
         

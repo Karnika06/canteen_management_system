@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.route("/feedback/new").post(createFeedback);
 router.route("/feedbacks").get(getAllFeedback);
-router.delete(isAuthenticatedUser, authorizeRoles("admin"), deleteFeedback);
+// router.route("/feedbackDelete/:id").delete(isAuthenticatedUser, authorizeRoles("admin"), deleteFeedback);
+router.route("/feedbackDelete/:id").delete( deleteFeedback);
 module.exports = router;

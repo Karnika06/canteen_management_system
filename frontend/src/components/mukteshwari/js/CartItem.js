@@ -8,6 +8,11 @@ import { AddItemsToCart, RemoveSingleItem } from "../../../actions/cartAction";
 
 function CartItem({ name, imgSrc, price, itemId, ...item }) {
   const dispatch = useDispatch();
+
+  const { loading, error, fooditems, fooditemCount } = useSelector(
+    (state) => state.fooditems
+  );
+  const itemIndexUpd = fooditems.findIndex((item) => item._id === itemId);
   const cart = useSelector((state) => state.cartReducer.carts);
 
   const [itemPrice, setItemPrice] = useState(
@@ -15,6 +20,7 @@ function CartItem({ name, imgSrc, price, itemId, ...item }) {
   );
 
   const removeItem = (id) => {
+    
     dispatch(RemoveItemFromCart(id));
   };
   const decrementItem = () => {
@@ -23,20 +29,30 @@ function CartItem({ name, imgSrc, price, itemId, ...item }) {
 
   useEffect(() => {
     setItemPrice(parseInt(item.qty) * parseInt(price));
+    //dispatch(UpdateQuantityOfItem(item))
+
+    
+    // console.log(fooditems[itemIndexUpd])
   }, [item.qty]);
 
   const sendToCart = () => {
-    dispatch(AddItemsToCart(item));
+    if(fooditems[itemIndexUpd].food_quantity > 0){
+      dispatch(AddItemsToCart(item));
+      fooditems[itemIndexUpd].food_quantity = fooditems[itemIndexUpd].food_quantity - 1;
+    }
   };
 
   const updateQuantity = (action, id) => {
     if (action === "add") {
       sendToCart();
+      
     } else {
       if (item.qty == 1) {
         removeItem(id);
+        fooditems[itemIndexUpd].food_quantity = fooditems[itemIndexUpd].food_quantity + 1;
       } else {
         decrementItem();
+        fooditems[itemIndexUpd].food_quantity = fooditems[itemIndexUpd].food_quantity + 1;
       }
     }
   };

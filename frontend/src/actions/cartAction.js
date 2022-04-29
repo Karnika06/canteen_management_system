@@ -21,3 +21,11 @@ export const RemoveSingleItem = (item) => {
         payload: item
     }
 }
+
+//update item quantity
+// export const UpdateQuantityOfItem = (item) => {
+//     return {
+//         type: "UPDATE_QTY",
+//         payload: item
+//     }
+// }
