@@ -1,11 +1,16 @@
-.canteen-bar{
-    width: 100%;
-    height: 50px;
-    background-color: black;
-    top: 0;
-    
+.canteen-bar {
+    width: 50%;
+    margin: auto;
+    background-color: tomato;
     align-items: center;
+    padding: 2vmax;
+    margin-top: 2vmax;
+    border-radius: 10px;
     font-family: 'Josefin Sans', 'sans-serif';
+}
+
+.canteen-bar:hover {
+    transform: translateY(-0.8vmax);
 }
 
 .canteen-list {
@@ -18,12 +23,12 @@
 
 .canteen-name {
 
-    font-size: 30px;
+    font-size: 3vmax;
     font-weight: 300;
     cursor: pointer;
 }
 
-.canteen-name{
+.canteen-name>a {
     text-decoration: none;
     color: white;
 }
