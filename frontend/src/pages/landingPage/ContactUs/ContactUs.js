@@ -6,7 +6,7 @@ export default function ContactUs() {
   return (
     <Fragment>
       <Navbar/>
-      <div className="body">
+      <div className="body-contact">
         <div class="contact-form">
           <div class="first-container">
             <div class="info-container">
