@@ -46,7 +46,7 @@ const CardGroup = ({ item: { title, heading, imageURL, isInverted } }) => {
           </Typography>
         </Para>
         <Pic wd={isMobile ? "100%" : "50%"} pad={isMobile ? "0 5%" : "0%"}>
-          <img style={{ width: "100%" }} src={imageURL}></img>
+          <img style={{ width: "80%" }} src={imageURL}></img>
         </Pic>
       </StyledCardGroup>
     </>
