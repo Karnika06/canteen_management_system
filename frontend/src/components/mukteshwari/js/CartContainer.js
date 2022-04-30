@@ -4,6 +4,7 @@ import CartItem from "./CartItem";
 import SubMenuContainer from "./SubMenuContainer";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 
 
 function CartContainer() {
@@ -66,7 +67,8 @@ function CartContainer() {
             <span>Rs.</span>{price}
           </p>
         </div>
-        <button className="checkout" >Checkout</button>
+        <Link to="/mukteshwari/ordernow"><button className="orderNow" >Order Now</button></Link>
+        
       </div>
       
       
