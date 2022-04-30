@@ -10,14 +10,14 @@ import { Create, Delete, RemoveRedEye } from "@mui/icons-material";
 function ViewItem() {
 
   const dispatch = useDispatch();
-
+  
+  const { loading, error, isAuthenticated, User } = useSelector(
+    (state) => state.user
+  );
   const {  fooditems, fooditemCount } = useSelector(
     (state) => state.fooditems
   );
 
-  const { loading, error, isAuthenticated, User } = useSelector(
-    (state) => state.user
-  );
 
   useEffect(() => {
 

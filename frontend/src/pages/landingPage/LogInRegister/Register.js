@@ -101,7 +101,12 @@ const Register = () => {
       })
     }).then(res => res.json()).then(data => {
       console.log(data)
-      //navigate('/')
+      if(data.success === true){
+        alert("Registered successfully now you can order your favourite food!!");
+      }else{
+        alert("Registration failed!!")
+      }
+      navigate('/')
     }).catch(err => {
       console.log(err)
     })

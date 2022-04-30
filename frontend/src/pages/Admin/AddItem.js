@@ -59,7 +59,11 @@ const {
   .then((res) => res.json())
   .then((data) => {
     console.log(data);
-    alert("Food Item added!!");
+    if(data.success == true){
+      alert("Food Item added!!");
+    }else{
+      alert("Try again!! Food item isn't added!!")
+    }
         navigate('/admin/viewitems');
   })
   .catch((err) => {
@@ -199,14 +203,14 @@ const {
             <tr className="form-row">
               <td className="form-label">Food Description</td>
               <td>
-                <input
+                <textarea
                   className="form-input"
                   name="food_description"
                   type="text"
                   placeholder="Enter food description"
                   value={foodItem.food_description}
                   onChange={handleInput}
-                ></input>
+                ></textarea>
               </td>
               {errors.food_description && (
                 <p className="validation-msgs">{errors.food_description}</p>

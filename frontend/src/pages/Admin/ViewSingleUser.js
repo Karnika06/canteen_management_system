@@ -1,10 +1,17 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom';
 
 function ViewSingleUser() {
     const {id} = useParams("")
     const [getUserDetails, setUserDetails] = useState([])
+
+    const dispatch = useDispatch();
+  
+  const { loading, error, isAuthenticated, User } = useSelector(
+    (state) => state.user
+  );
   
     const getData = async () => {
     
@@ -12,6 +19,7 @@ function ViewSingleUser() {
       await fetch(`http://localhost:4000/api/v1/admin/user/${id}`, {
         method: "get",
         headers: {
+          authorization: User.token,
           "Content-Type": "application/json",
         },
         

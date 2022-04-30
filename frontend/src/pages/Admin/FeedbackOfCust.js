@@ -3,10 +3,17 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import Moment from 'react-moment'
 import axios from 'axios';
+import { useSelector, useDispatch } from "react-redux";
 
 function FeedbackOfCust() {
 
+  const dispatch = useDispatch();
+
   const [getFeedbackDetails, setFeedbackDetails] = useState([])
+
+  const { loading, error, isAuthenticated, User } = useSelector(
+    (state) => state.user
+  );
 
   const getData = async () => {
   
@@ -14,7 +21,7 @@ function FeedbackOfCust() {
     await fetch(`http://localhost:4000/api/v1/feedbacks`, {
       method: "get",
       headers: {
-        
+        authorization: User.token,
         "Content-Type": "application/json",
       },
       
@@ -39,7 +46,7 @@ function FeedbackOfCust() {
     await axios.delete(`http://localhost:4000/api/v1/feedbackDelete/${id}`,
     {
       headers: {
-        // authorization: User.token,
+        authorization: User.token,
         "Content-Type": "application/json" 
       }
     }).then((res) =>{
