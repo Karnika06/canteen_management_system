@@ -1,39 +1,22 @@
+import { useSelector, useDispatch } from "react-redux";
+
 export const initialState = {
   cart: null,
   total: null,
 };
 
-export const actionType = {
-  SET_CART: "SET_CART",
-  SET_TOTAL: "SET_TOTAL",
-};
-
-const reducer = (state, action) => {
-  //console.log(action);
-
-  switch (action.type) {
-    case actionType.SET_CART:
-      return {
-        ...state,
-        cart: action.cart,
-      };
-
-    case actionType.SET_TOTAL:
-      return {
-        ...state,
-        total: action.total,
-      };
-
-    default:
-      return state;
-  }
-};
 
 const INIT_STATE = {
   carts: [],
 };
 
-export const cartReducer = (state = INIT_STATE, action) => {
+
+
+export const CartReducer = (state = INIT_STATE, action) => {
+
+  // const { loading, error, fooditems, fooditemCount } = useSelector((state) => state.fooditems);
+
+  // const itemIndexUpd = fooditems.findIndex((item) => item._id === action.payload._id);
   switch (action.type) {
     case "ADD_CART":
       const itemIndex = state.carts.findIndex(
@@ -41,10 +24,11 @@ export const cartReducer = (state = INIT_STATE, action) => {
       );
 
       if (itemIndex >= 0) {
-        state.carts[itemIndex].qty += 1;
+        state.carts[itemIndex].qty += 1; 
       } else {
         const temp = { ...action.payload, qty: 1 };
 
+        // fooditems[itemIndexUpd].food_quantity = fooditems[itemIndexUpd].food_quantity - 1;
         return {
           ...state,
           carts: [...state.carts, temp],
@@ -53,6 +37,7 @@ export const cartReducer = (state = INIT_STATE, action) => {
 
     case "REMOVE_CART":
       const data = state.carts.filter((ele) => ele._id !== action.payload);
+      // fooditems[itemIndexUpd].food_quantity = fooditems[itemIndexUpd].food_quantity + 1;
       return {
         ...state,
         carts: data,
@@ -64,7 +49,8 @@ export const cartReducer = (state = INIT_STATE, action) => {
       );
       if (state.carts[itemIndexRmv].qty >= 1) {
         const deleteItem = (state.carts[itemIndexRmv].qty -= 1);
-        console.log([...state.carts, deleteItem]);
+        //console.log([...state.carts, deleteItem]);
+        // fooditems[itemIndexUpd].food_quantity = fooditems[itemIndexUpd].food_quantity + 1;
         return {
           ...state,
           carts: [...state.carts],
@@ -76,9 +62,11 @@ export const cartReducer = (state = INIT_STATE, action) => {
           carts: data,
         };
       }
+
+      // case "UPDATE_QTY":
+      //   const itemIndexUpd = state.carts.findIndex((item) => item._id === action.payload._id);
+      //   state.carts[itemIndexUpd].food_quantity -= state.carts[itemIndexUpd].qty;
     default:
       return state;
   }
 };
-
-export default reducer;

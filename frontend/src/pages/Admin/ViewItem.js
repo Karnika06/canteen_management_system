@@ -27,7 +27,7 @@ function ViewItem() {
     
   }, [dispatch]);
 
-  const deleteUser = async (id) => {
+  const deleteItem = async (id) => {
 
     await axios.delete(`http://localhost:4000/api/v1/admin/fooditem/${id}`,
     {
@@ -106,7 +106,7 @@ function ViewItem() {
                 </button>
                 </NavLink>
 
-                <button className="btn btn-danger" onClick={() => deleteUser(data._id)}>
+                <button className="btn btn-danger" onClick={() => deleteItem(data._id)}>
                   <Delete/>
                 </button>
               </td>

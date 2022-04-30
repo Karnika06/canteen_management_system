@@ -10,7 +10,7 @@ function Customer() {
     <>
         <Navbar/>
         <Routes>
-        <Route exact path='/' element={<Mukteshwari/>}/>
+        <Route path='/' element={<Mukteshwari/>}/>
         <Route path = "/myorders" element={<MyOrders/>}/>
           <Route path = "/sendFeedback" element={<SendFeedback/>}/>
           <Route path = "/myProfile" element={<UpdateProfile/>}/>

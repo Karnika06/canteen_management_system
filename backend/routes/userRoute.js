@@ -34,14 +34,24 @@ router.route("/password/update").put(isAuthenticatedUser, updateUserPassword);
 
 router.route("/me/update").put(isAuthenticatedUser, updateUserProfile);
 
-router
-  .route("/admin/users")
-  .get(isAuthenticatedUser, authorizeRoles("admin"), getAllUsers);
+// router
+//   .route("/admin/users")
+//   .get(isAuthenticatedUser, authorizeRoles("admin"), getAllUsers);
 
 router
+  .route("/admin/users")
+  .get( getAllUsers);
+
+// router
+//   .route("/admin/user/:id")
+//   .get(isAuthenticatedUser, authorizeRoles("admin"), getSingleUser)
+//   .put(isAuthenticatedUser, authorizeRoles("admin"), updateUserRole)
+//   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteUser);
+
+  router
   .route("/admin/user/:id")
-  .get(isAuthenticatedUser, authorizeRoles("admin"), getSingleUser)
-  .put(isAuthenticatedUser, authorizeRoles("admin"), updateUserRole)
-  .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteUser);
+  .get( getSingleUser)
+  .put( updateUserRole)
+  .delete( deleteUser);
 
 module.exports = router;

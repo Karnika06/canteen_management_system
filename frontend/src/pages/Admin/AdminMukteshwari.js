@@ -10,13 +10,14 @@ import OrderHistory from './OrderHistory';
 import ViewCustomer from './ViewCustomer';
 import EditItem from './EditItem';
 import ViewSingleItem from './ViewSingleItem';
+import ViewSingleUser from './ViewSingleUser';
 
 function AdminMukteshwari() {
   return (
     <>
         <Navbar/>
         <Routes>
-        <Route exact path='/' element={<Home/>}/>
+        <Route path='/' element={<Home/>}/>
         <Route path = "/additem" element={<AddItem/>}/>
           <Route path = "/feedback" element={<FeedbackOfCust/>}/>
           <Route path = "/viewitems" element={<ViewItem/>}/>
@@ -24,6 +25,7 @@ function AdminMukteshwari() {
           <Route path = "/viewcustomer" element={<ViewCustomer/>}/>
           <Route path = "/edititem/:id" element={<EditItem/>}/>
           <Route path = "/view-single-item/:id" element={<ViewSingleItem/>}/>
+          <Route path = "/view-single-user/:id" element={<ViewSingleUser/>}/>
           
         </Routes>
     </>
