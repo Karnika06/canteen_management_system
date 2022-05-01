@@ -15,7 +15,7 @@ function EditItem() {
   );
 
     const {id} = useParams("");
-    console.log(id)
+    
 
   const [ foodItem, setFoodItem] = useState({
     food_name:"", food_price:"" , food_quantity:"" , food_itemId:"", food_image:""});
@@ -104,7 +104,12 @@ const updateData = async (e) => {
     }
   }).then((res) =>{
       console.log(res.data)
-    alert("Food Item updated!!");
+      if(res.data.success == true){
+
+        alert("Food Item updated!!");
+      }else{
+        alert("Food item updation failed!! Try again!")
+      }
         navigate('/admin/viewitems');
     }).catch(err => {
       console.log(err)
@@ -197,7 +202,7 @@ const updateData = async (e) => {
 
         <tr className='form-row'>
           <td className="form-label">Food Description</td>
-          <td><input className='form-input' name='food_description' type="text" placeholder='Enter food description' value={foodItem.food_description}
+          <td><textarea className='form-input' name='food_description' type="text" placeholder='Enter food description' value={foodItem.food_description}
                                 onChange={handleInput}/></td>
                                 {errors.food_description && (<p className='validation-msgs'>{errors.food_description}</p>)}
         </tr>

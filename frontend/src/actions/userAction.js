@@ -26,7 +26,12 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     );
-    console.log(data);
+    console.log(data)
+    if(data.success === true){
+      alert("You have successfully logged in!!")
+    }else{
+      alert(data.message)
+    }
 
     dispatch({ type: LOGIN_SUCCESS, payload: data });
   } catch (error) {

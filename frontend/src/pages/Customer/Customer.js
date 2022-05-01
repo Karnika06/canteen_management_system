@@ -4,6 +4,7 @@ import Mukteshwari from './Mukteshwari'
 import MyOrders from './MyOrders'
 import SendFeedback from './SendFeedback'
 import UpdateProfile from './UpdateProfile'
+import OrderNow from './OrderNow'
 
 function Customer() {
   return (
@@ -15,6 +16,7 @@ function Customer() {
           <Route path = "/sendFeedback" element={<SendFeedback/>}/>
           <Route path = "/myProfile" element={<UpdateProfile/>}/>
           
+          <Route path = "/ordernow" element={<OrderNow/>}/>
         </Routes>
     </>
   )
