@@ -1,11 +1,19 @@
-import React from 'react'
+import React from "react";
 import useViewport from "../../../viewport/useViewport";
 import { NavLink } from "react-router-dom";
-import "../css/Navbar.css"
+import "../css/Navbar.css";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../actions/userAction";
 
 export default function Navbar() {
 
-    const { isMobile, isTablet } = useViewport();
+  const dispatch = useDispatch();
+  const { isMobile, isTablet } = useViewport();
+
+  function logoutUser() {
+    dispatch(logout());
+    window.alert("Logged Out");
+  }
 
   return (
     <div className="top-bar">
@@ -54,7 +62,7 @@ export default function Navbar() {
               to="/admin/feedback"
               style={{ textDecoration: "none", color: "white" }}
             >
-                View Feedback
+              View Feedback
             </NavLink>
           </li>
           <li className="navbar-item">
@@ -82,10 +90,11 @@ export default function Navbar() {
       <div className="top-right">
         <button
           className="logout"
-          style={{ display: isMobile ? "none" : "inline" ,width:"70%"}}
+          style={{ display: isMobile ? "none" : "inline", width: "70%" }}
         >
           <NavLink
-            to="/logout"
+            to="/"
+            onClick={(e) => logoutUser()}
             style={{ textDecoration: "none", color: "white" }}
           >
             Log out
@@ -96,5 +105,5 @@ export default function Navbar() {
         </div>
       </div>
     </div>
-  )
+  );
 }
