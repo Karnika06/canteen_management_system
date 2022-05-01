@@ -23,7 +23,7 @@ export default function ContactUs() {
               </div>
               <div>
                 <h3>General Support</h3>
-                <p>contact@example.com</p>
+                <p>digitalbhojnalaya@gmail.com</p>
               </div>
             </div>
           </div>
