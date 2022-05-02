@@ -5,12 +5,14 @@ import SubMenuContainer from "./SubMenuContainer";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
+import { SetTotal } from "../../../actions/cartAction";
 
 
 function CartContainer() {
 
     const [price, setPrice] = useState(0)
     const cart = useSelector((state) => state.cartReducer.carts)
+    const dispatch = useDispatch();
     
     const total = () => {
       let price = 0;
@@ -24,7 +26,8 @@ function CartContainer() {
 
     useEffect(() => {
     
-      total();      
+      total();
+      dispatch(SetTotal(price));    
     }, [total])
 
     

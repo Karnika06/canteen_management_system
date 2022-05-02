@@ -30,12 +30,13 @@ export const login = (email, password) => async (dispatch) => {
     if(data.success === true){
       alert("You have successfully logged in!!")
     }else{
-      alert(data.message)
+      alert("Logging in failed!!",data.message)
     }
 
     dispatch({ type: LOGIN_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
+    alert("Log in failed!!")
   }
 };
 

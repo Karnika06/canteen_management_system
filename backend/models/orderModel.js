@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
+  full_name: {
+    type: String,
+    required: true
+  },
   items: [
     {
       food_name: {
@@ -11,18 +15,18 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
-      quantity: {
+      qty: {
         type: String,
         required: true,
       },
-      image: {
+      food_image: {
         type: String,
         required: true,
       },
-      fooditem: {
+      _id: {
         type: mongoose.Schema.ObjectId,
         ref: "Food",
-        required: true,
+         required: true,
       },
     },
   ],
@@ -31,41 +35,60 @@ const orderSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  contact_no: {
+    type: Number,
+    required: [true, "Please enter your contact number"],
+    maxlength: [10, "Contact number cannot exceed 10 characters"],
+    minlength: [10, "Contact number cannot be less than 10 characters"],
+  },
+  address:{
+    type: String,
+    required: true
+  },
   paymentInfo: {
     pay_id: {
       type: String,
-      required: true,
+      // required: true,
     },
   },
   paidAt: {
     type: Date,
     required: true,
   },
-  itemsPrice: {
-    type: Number,
-    default: 0,
-    required: true,
+  paymentMethod: {
+    type: String,
+    required: true
   },
-  taxPrice: {
-    type: Number,
-    default: 0,
-    required: true,
-  },
+  // itemsPrice: {
+  //   type: Number,
+  //   default: 0,
+  //   required: true,
+  // },
+  // taxPrice: {
+  //   type: Number,
+  //   default: 0,
+  //   required: true,
+  // },
   totalPrice: {
     type: Number,
     default: 0,
     required: true,
+  },
+  paymentStatus:{
+    type:String,
+    required: true,
+    default: "Unpaid"
   },
   orderStatus: {
     type: String,
     required: true,
     default: "Processing",
   },
-  deliveredAt: Date,
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  // deliveredAt: Date,
+  // createdAt: {
+  //   type: Date,
+  //   default: Date.now,
+  // },
 });
 
 module.exports = mongoose.model("Order", orderSchema);

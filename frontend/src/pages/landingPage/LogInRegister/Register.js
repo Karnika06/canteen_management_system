@@ -110,15 +110,6 @@ const Register = () => {
     }).catch(err => {
       console.log(err)
     })
-
-    /* const data = await res.json();
-    if(data.status === 422 || !data){
-      window.alert("Invalid Registration");
-    }else{
-      window.alert("Successful Registration");
-      history.push("/login");
-    } */
-
   };
 
 

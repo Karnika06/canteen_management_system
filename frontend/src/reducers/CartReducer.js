@@ -8,6 +8,7 @@ export const initialState = {
 
 const INIT_STATE = {
   carts: [],
+  total: 0
 };
 
 
@@ -62,6 +63,12 @@ export const CartReducer = (state = INIT_STATE, action) => {
           carts: data,
         };
       }
+
+      case "SET_TOTAL":
+        return{
+          ...state,
+          total: action.payload
+        }
 
       // case "UPDATE_QTY":
       //   const itemIndexUpd = state.carts.findIndex((item) => item._id === action.payload._id);

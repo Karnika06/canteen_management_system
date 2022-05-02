@@ -7,7 +7,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-body {
+.body-contact {
   height: 100vh;
   display: flex;
   justify-content: center;

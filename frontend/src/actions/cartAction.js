@@ -22,6 +22,13 @@ export const RemoveSingleItem = (item) => {
     }
 }
 
+export const SetTotal = (price) => {
+    return {
+        type: "SET_TOTAL",
+        payload: price
+    }
+}
+
 //update item quantity
 // export const UpdateQuantityOfItem = (item) => {
 //     return {
