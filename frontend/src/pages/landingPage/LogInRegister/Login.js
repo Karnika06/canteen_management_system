@@ -143,7 +143,7 @@ export default function Login() {
               </div>
               <div className="form-group">
                 <p>
-                  <Link to="/password/forgot">Forgot password?</Link>
+                  <Link to="/forgot-password">Forgot password?</Link>
                 </p>
               </div>
               <div className="form-group">

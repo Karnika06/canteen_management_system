@@ -11,10 +11,12 @@ import Register from "./pages/landingPage/LogInRegister/Register";
 import Login from "./pages/landingPage/LogInRegister/Login";
 import Mukteshwari from "./pages/Customer/Mukteshwari";
 import { useSelector, useDispatch } from "react-redux";
+import ForgotPass from "./pages/ForgotPass/ForgotPass";
 import AdminMukteshwari from "./pages/Admin/AdminMukteshwari";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 import Customer from "./pages/Customer/Customer";
+
 import { loadUser } from "./actions/userAction";
 import store from "./store";
 
@@ -37,6 +39,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/mukteshwari/*" element={<Customer />} />
             <Route path="/admin/*" element={<AdminMukteshwari />} />
+            <Route path="/forgot-password" element={<ForgotPass/>} />
           </Routes>
         </Router>
       </ViewportProvider>
