@@ -1,15 +1,24 @@
-import React from 'react'
+
 import './ForgotPass.css'
+import React, { useState, useEffect } from "react";
 
 function ForgotPass() {
+
+	const [email, setEmail] = useState("");
+	const handleSubmit = (e) => {
+        e.preventDefault();
+        
+    };
+
   return (
     <div class="row">
 		<h1>Forgot Password</h1>
 		<h6 class="information-text">Enter your registered email to reset your password.</h6>
 		<div class="form-group">
-			<input type="email" name="user_email" id="user_email"></input>
+			<input type="email" name="user_email" id="user_email" value={email}
+                  onChange={(e) => setEmail(e.target.value)}></input>
 			<p><label for="username">Email</label></p>
-			<button onclick="showSpinner()">Reset Password</button>
+			<button onclick={handleSubmit}>Reset Password</button>
 		</div>
 	</div>
   )

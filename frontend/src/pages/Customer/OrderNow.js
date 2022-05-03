@@ -30,6 +30,7 @@ function OrderNow() {
   const PostData  = async (e) => {
     const { full_name, address, contact_no, items, paymentMethod, totalPrice} = orderDetails;
     const user = User;
+    const userEmail = User.user.email;
     await fetch("http://localhost:4000/api/v1/order/new",{
       method: "POST",
       headers:{
@@ -37,7 +38,7 @@ function OrderNow() {
         "Content-Type" : "application/json"
       },
       body: JSON.stringify({
-        full_name, address, contact_no, items, paymentMethod, totalPrice, user
+        full_name, address, contact_no, items, paymentMethod, totalPrice, user, userEmail
       })
     }).then(res => res.json()).then(data => {
       console.log(data)

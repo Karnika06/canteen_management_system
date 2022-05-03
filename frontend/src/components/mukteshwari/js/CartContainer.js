@@ -14,6 +14,10 @@ function CartContainer() {
     const cart = useSelector((state) => state.cartReducer.carts)
     const dispatch = useDispatch();
     
+    const { loading, error, isAuthenticated, User } = useSelector(
+      (state) => state.user
+    );
+
     const total = () => {
       let price = 0;
       cart.map((item, key) => {
@@ -70,7 +74,9 @@ function CartContainer() {
             <span>Rs.</span>{price}
           </p>
         </div>
-        <Link to="/mukteshwari/ordernow"><button className="orderNow" >Order Now</button></Link>
+        {isAuthenticated ?
+        <Link to="/mukteshwari/ordernow"><button className="orderNow" >Order Now</button></Link> :
+        <button className="orderNow" style={{fontSize: "14px"}}>Please login to order your food.</button>}
         
       </div>
       

@@ -1,11 +1,22 @@
 import React from 'react'
 import useViewport from "../../../viewport/useViewport";
 import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import "../css/Navbar.css"
+import { logout } from "../../../actions/userAction";
 
 export default function Navbar() {
 
+  const dispatch = useDispatch();
     const { isMobile, isTablet } = useViewport();
+    const { loading, error, isAuthenticated, User } = useSelector(
+      (state) => state.user
+    );
+
+    function logoutUser() {
+      dispatch(logout());
+      window.alert("Logged Out");
+    }
 
   return (
     <div className="top-bar">
@@ -81,10 +92,32 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="top-right">
-      <i class="fa-solid fa-cart-shopping" style={{ color: "white" }}></i>
+      {/* <i class="fa-solid fa-cart-shopping" style={{ color: "white" }}></i>
         <div className="Menu" style={{ display: isMobile ? "inline" : "none" }}>
-          <i class="fa-solid fa-bars" style={{ color: "white" }}></i>
-        </div>
+          <i class="fa-solid fa-bars" style={{ color: "white" }}></i> */}
+
+<button
+          className="signUpRegister"
+          style={{ display: isMobile ? "none" : "inline" ,width:"70%"}}
+        >
+          {isAuthenticated ?
+          <NavLink
+            to="/"
+            onClick={(e) => logoutUser()}
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            Log out
+          </NavLink> :
+          <NavLink
+          to="/login"
+          style={{ textDecoration: "none", color: "white" }}
+        >
+          Log in
+        </NavLink>
+          }
+
+</button>
+        
       </div>
     </div>
   )

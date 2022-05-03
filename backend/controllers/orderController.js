@@ -6,11 +6,12 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 //create new order
 exports.newOrder = catchAsyncErrors(async (req, res, next) => {
   // const { items, paymentInfo, itemsPrice, taxPrice, totalPrice } = req.body;
-  const { full_name,items, contact_no,paymentMethod, address,paymentInfo, totalPrice } = req.body;
+  const { full_name,items, userEmail, contact_no,paymentMethod, address,paymentInfo, totalPrice } = req.body;
 
   const order = await Order.create({
     full_name,
     items,
+    userEmail,
     paymentInfo,
     paymentMethod,
     contact_no, address,
@@ -66,6 +67,54 @@ exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
     success: true,
     totalAmount,
     orders,
+  });
+});
+
+//Update Order Status (ADMIN)
+exports.updateOrderStatus = catchAsyncErrors(async (req, res, next) => {
+  const orderStatusData = {
+  
+    orderStatus: req.body.orderStatus,
+  };
+
+  const order = await Order.findByIdAndUpdate(req.params.id, orderStatusData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  if (!order) {
+    return next(
+      new ErrorHandler(`Order does not exist with id: ${req.params.id}`)
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
+//Update Payment Status (ADMIN)
+exports.updatePaymentStatus = catchAsyncErrors(async (req, res, next) => {
+  const paymentStatusData = {
+  
+    paymentStatus: req.body.paymentStatus,
+  };
+
+  const payment = await Order.findByIdAndUpdate(req.params.id, paymentStatusData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  if (!payment) {
+    return next(
+      new ErrorHandler(`Order does not exist with id: ${req.params.id}`)
+    );
+  }
+
+  res.status(200).json({
+    success: true,
   });
 });
 
