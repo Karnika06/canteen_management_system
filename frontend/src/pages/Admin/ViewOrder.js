@@ -40,19 +40,58 @@ function ViewOrder() {
         getData()
       },[])
   return (
-    <div>
-        <h2>Customer name - {getOrderDetails.full_name}</h2>
+    <div className="main-order-table" style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", alignContent:"center"}}>
+    <h2 style={{padding:"20px"}}>Order Details</h2>
+    <table class="table table-bordered table-dark" style={{width:"85%"}}>
+  
+  <tbody>
+    <tr>
+      <th scope="row">Customer Name</th>
+      
+      <td>{getOrderDetails.full_name}</td>
+      
+    </tr>
+    <tr>
+      <th scope="row">Order ID</th>
+      <td> {getOrderDetails._id} </td>
+    </tr>
+    <tr>
+      <th>Address</th>
+      
+      <td>{getOrderDetails.address}</td>
+    </tr>
+        <tr>
+      <th scope="row">Contact no.</th>
+      
+      <td>{getOrderDetails.contact_no}</td>
+    </tr> 
+        <tr>
+      <th scope="row">Payment Method</th>
+        <td>{getOrderDetails.paymentMethod}</td>
+    </tr>
+         <tr>
+      <th scope="row">Total Price</th>
+      
+      <td>{getOrderDetails.totalPrice}</td>
+    </tr>
+        <tr>
+      <th scope="row">Order Status</th>
+      
+      <td>{getOrderDetails.orderStatus}</td>
+    </tr>
+         <tr>
+      <th scope="row">Payment  Status</th>
+      
+      <td>{getOrderDetails.paymentStatus}</td>
+    </tr>
+    <tr>
+      <th scope="row">Order Date</th>
+      
+      <td>{getOrderDetails.paidAt}</td>
+    </tr>
+  </tbody>
+</table>
         
-        <h4>Order ID - {getOrderDetails._id}</h4>
-        <h4>Address - {getOrderDetails.address}</h4>
-        <h4>Contact no. - {getOrderDetails.contact_no}</h4>
-        <h4>Payment Method - {getOrderDetails.paymentMethod}</h4>
-        {/* <h4>{getOrderDetails.items}</h4> */}
-        <h4>Total Price - {getOrderDetails.totalPrice}</h4>
-        <h4>Order Status - {getOrderDetails.orderStatus}</h4>
-        <h4>Payment Status - {getOrderDetails.paymentStatus}</h4>
-
-        <h4>Order Date - {getOrderDetails.paidAt}</h4>
 
     </div>
   )

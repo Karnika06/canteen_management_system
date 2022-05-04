@@ -1,4 +1,4 @@
-.box {
+/* .box {
     box-sizing: border-box;
     background-color: #ffffcc;
 }
@@ -150,7 +150,7 @@
     position: absolute;
 } */
 
-h1 {
+/*h1 {
     font-size: 72px;
     text-shadow: 2px 1px #ff0000;
     text-align: center;
@@ -161,7 +161,7 @@ h2 {
     position: absolute;
     top: 270px;
     left: 790px;
-    /* transform: translatex(-50%); */
+    
     text-shadow: 2px 1px #a30404;
     text-align: center;
   }
@@ -194,11 +194,11 @@ h2 {
     position: absolute;
     top: 580px;
     left: 31%;
-    /* transform: translatex(-50%); */
+    
     margin-left: 60px;
     font-size: 14px;
     text-align: center;
     align-content: center;
     font-weight: bold;
     
-  }
+  } */
