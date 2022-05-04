@@ -1,0 +1,204 @@
+.box {
+    box-sizing: border-box;
+    background-color: #ffffcc;
+}
+
+.card_wrapper {
+    position: relative;
+    width: 705px;
+    height: 405px;
+    padding: 90px 70px;
+    margin: auto;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+    box-shadow: 2px 2px 10px #777777;
+    animation: pad 7s linear infinite forwards;
+  }
+
+  @keyframes pad {
+    0% {
+      padding: 90px 70px;
+    }
+    48% {
+      padding: 90px 70px;
+    }
+    52% {
+      padding: 30px;
+    }
+    97% {
+      padding: 30px;
+    }
+  }
+
+  .column {
+    float: left;
+    width: 50%;
+  }
+
+  .image_wrapper {
+    width: 220px;
+    height: 220px;
+    margin: auto;
+    background-color: #000000;
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+    transform: rotate(45deg);
+    overflow: hidden;
+    box-shadow: 1px 1px 7px #777777;
+    animation: cont 7s linear infinite forwards;
+  }
+
+  @keyframes cont {
+    0% {
+      width: 220px;
+      height: 220px;
+      transform: rotate(45deg);
+    }
+    48% {
+      width: 220px;
+      height: 220px;
+      transform: rotate(45deg);
+    }
+    52% {
+      width: 340px;
+      height: 340px;
+      transform: rotate(0deg);
+    }
+    97% {
+      width: 340px;
+      height: 340px;
+      transform: rotate(0deg);
+    }
+  }
+  .lense {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    animation: glass 7s linear infinite forwards;
+  }
+  
+  @keyframes glass {
+    0% {
+      width: 220px;
+      height: 220px;
+    }
+    48% {
+      width: 220px;
+      height: 220px;
+    }
+    52% {
+      width: 340px;
+      height: 340px;
+    }
+    97% {
+      width: 340px;
+      height: 340px;
+    }
+  }
+
+  .img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 340px;
+    animation: photo 7s linear infinite forwards;
+  }
+  @keyframes photo {
+    0% {
+      width: 340px;
+      height: 340px;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    48% {
+      width: 340px;
+      height: 340px;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    52% {
+      width: 500px;
+      height: 500px;
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    97% {
+      width: 500px;
+      height: 500px;
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+  }
+/* 
+.image {
+  width:300px;
+  height: 250px;
+  text-align:center;
+  display:block;
+  object-fit:cover;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin-left: 30px;
+  margin-bottom: 1px;
+  margin-top: 10px;
+  float:left;
+} */
+
+/* .details { 
+    margin-top: 325px;
+    margin-left: 30px;
+    position: absolute;
+} */
+
+h1 {
+    font-size: 72px;
+    text-shadow: 2px 1px #ff0000;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+h2 {
+    position: absolute;
+    top: 270px;
+    left: 790px;
+    /* transform: translatex(-50%); */
+    text-shadow: 2px 1px #a30404;
+    text-align: center;
+  }
+
+.price {
+    position: absolute;
+    top: 320px;
+    left: 57%;
+    text-shadow: 2px 1px #9d9d9d;
+    text-align: center;
+}
+
+.quantity {
+    position: absolute;
+    top: 360px;
+    left: 56%;
+    text-shadow: 2px 1px #9d9d9d;
+    text-align: center;
+}
+
+.foodcategory {
+    position: absolute;
+    top: 400px;
+    left: 53%;
+    text-shadow: 2px 1px #9d9d9d;
+    text-align: center;
+}
+
+.p {
+    position: absolute;
+    top: 580px;
+    left: 31%;
+    /* transform: translatex(-50%); */
+    margin-left: 60px;
+    font-size: 14px;
+    text-align: center;
+    align-content: center;
+    font-weight: bold;
+    
+  }
