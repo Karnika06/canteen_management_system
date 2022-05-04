@@ -11,6 +11,9 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  FORGOT_FAIL,
+  FORGOT_REQUEST,
+  FORGOT_SUCCESS,
 } from "../constants/userConstants";
 
 export const userReducer = (state = { User: {} }, action) => {
@@ -75,3 +78,37 @@ export const userReducer = (state = { User: {} }, action) => {
       return state;
   }
 };
+
+export const forgotReduer = (state = { User: {} }, action) =>{
+  switch (action.type) {
+    case FORGOT_REQUEST:
+      return {
+        ...state ,
+        loading : true,
+        error : null,
+      };
+
+    case FORGOT_SUCCESS:
+      return {
+        loading: false,
+        ...state,
+        message : action.payload,
+      };
+
+      case FORGOT_FAIL:
+      return {
+        loading: false,
+        ...state,
+        error : action.payload,
+      };
+
+      case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+      default:
+      return state;
+    }
+}

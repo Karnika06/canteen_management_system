@@ -11,6 +11,9 @@ import {
   LOAD_USER_FAIL,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
+  FORGOT_FAIL,
+  FORGOT_REQUEST,
+  FORGOT_SUCCESS,
 } from "../constants/userConstants";
 
 import axios from "axios";
@@ -81,4 +84,16 @@ export const logout = () => async (dispatch) => {
 
 export const clearErrors = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
+};
+
+export const forgotPassword = (email) => async (dispatch) => {
+  try {
+    dispatch({type : FORGOT_REQUEST})
+    const config = { headers: { "Content-Type": "application/json" } };
+    const{data} = await axios.post(`/api/v1/password/forgot` , email , config);
+
+    dispatch({ type: FORGOT_SUCCESS , payload : data.message });
+  } catch (error) {
+    dispatch({ type: FORGOT_FAIL, payload: error.response.data.message });
+  }
 };
