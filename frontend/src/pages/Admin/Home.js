@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import axios from 'axios';import { NavLink } from "react-router-dom";
+import axios from 'axios';
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Create, Delete, RemoveRedEye } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -127,7 +128,7 @@ function Home() {
         //getData()
         navigate('/admin')
       }else{
-        alert("Order status updation failed!! Try again!")
+        alert("Order status update failed!! Try again!")
       }
       
     }).catch(err => {
@@ -199,9 +200,14 @@ function Home() {
                 </button>
                 </td>
               <td>
+              <NavLink
+              exact
+              activeClassName="active_class"
+              to={`/admin/view-order/${data._id}`}>
               <button className="btn btn-success">
                   <i class="fas fa-eye"></i>
                 </button>
+                </NavLink>
               </td>
               <td>{data.totalPrice}</td>
               <td>{data.paymentMethod}</td>

@@ -11,6 +11,7 @@ import ViewCustomer from './ViewCustomer';
 import EditItem from './EditItem';
 import ViewSingleItem from './ViewSingleItem';
 import ViewSingleUser from './ViewSingleUser';
+import ViewOrder from './ViewOrder';
 
 function AdminMukteshwari() {
   return (
@@ -26,6 +27,7 @@ function AdminMukteshwari() {
           <Route path = "/edititem/:id" element={<EditItem/>}/>
           <Route path = "/view-single-item/:id" element={<ViewSingleItem/>}/>
           <Route path = "/view-single-user/:id" element={<ViewSingleUser/>}/>
+          <Route path = "/view-order/:id" element={<ViewOrder/>}/>
           
         </Routes>
     </>
