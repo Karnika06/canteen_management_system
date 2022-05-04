@@ -35,6 +35,10 @@ const orderSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  userEmail:{
+    type: String,
+    required: true
+  },
   contact_no: {
     type: Number,
     required: [true, "Please enter your contact number"],

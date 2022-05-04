@@ -10,7 +10,8 @@ function Home() {
 
   const [getOrder, setOrder] = useState([])
   const [getUserEmailID, setUserEmailID] = useState()
-  const [getRole, setRole] = useState()
+  const [getOrderStatus, setOrderStatus] = useState()
+  const [getPaymentStatus, setPaymentStatus] = useState()
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -41,35 +42,13 @@ function Home() {
       });
   };
 
-  const getUserData = async (id) => {
-    
-    //getting data from backend
-    await fetch(`http://localhost:4000/api/v1/admin/user/${id}`, {
-      method: "get",
-      headers: {
-        authorization: User.token,
-        "Content-Type": "application/json",
-      },
-      
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setUserEmailID(data)
-        console.log(data);
-        
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   useEffect (() => {
     getData()
   },[])
 
   const deleteUser = async (id) => {
 
-    await axios.delete(`http://localhost:4000/api/v1/admin/user/${id}`,
+    await axios.delete(`http://localhost:4000/api/v1/admin/order/${id}`,
     {
       headers: {
         authorization: User.token,
@@ -78,7 +57,7 @@ function Home() {
     }).then((res) =>{
         console.log(res.data)
         if(res.data.success === true){
-          alert("User deleted Successfully!!")
+          alert("Order deleted Successfully!!")
         }else{
           alert("Deletion unsuccessful!!")
         }
@@ -89,13 +68,13 @@ function Home() {
       })
     }
 
-    //function to update role
-    const updateRole = async(id) =>{
+    //function to Order Status
+    const updateOrderStatus = async(id) =>{
 
-      const role = getRole
-      await axios.put(`http://localhost:4000/api/v1/admin/user/${id}`,
+      const orderStatus = getOrderStatus
+      await axios.put(`http://localhost:4000/api/v1/admin/orderStatus/${id}`,
   {    
-    role
+    orderStatus
   },
   {
     headers: {
@@ -106,11 +85,11 @@ function Home() {
       console.log(res)
       if(res.data.success == true){
 
-        alert("Role updated!!");
+        alert("Order Status updated!!");
         //getData()
-        navigate('/admin/viewcustomer')
+        navigate('/admin')
       }else{
-        alert("Role updation failed!! Try again!")
+        alert("Order status updation failed!! Try again!")
       }
       
     }).catch(err => {
@@ -118,14 +97,53 @@ function Home() {
     })
     }
 
-    const handleChange = (e) =>{
+    const handleOrderStatus = (e) =>{
       console.log(e.target)
-      setRole(e.target.value)
+      setOrderStatus(e.target.value)
     }
 
     useEffect (()=>{
-      console.log(getRole)
-    },[getRole])
+      console.log(getOrderStatus)
+    },[getOrderStatus])
+
+    //update Payment Status
+    const updatePaymentStatus = async(id) =>{
+
+      const paymentStatus = getPaymentStatus
+      await axios.put(`http://localhost:4000/api/v1/admin/paymentStatus/${id}`,
+  {    
+    paymentStatus
+  },
+  {
+    headers: {
+      authorization: User.token,
+      "Content-Type": "application/json" 
+    }
+  }).then((res) =>{
+      console.log(res)
+      if(res.data.success == true){
+
+        alert("Order Status updated!!");
+        //getData()
+        navigate('/admin')
+      }else{
+        alert("Order status updation failed!! Try again!")
+      }
+      
+    }).catch(err => {
+      console.log(err)
+    })
+    }
+
+    const handlePaymentStatus = (e) =>{
+      console.log(e.target)
+      setPaymentStatus(e.target.value)
+    }
+
+    useEffect (()=>{
+      console.log(getPaymentStatus)
+    },[getPaymentStatus])
+
 
   let i = 1
   return (
@@ -142,6 +160,7 @@ function Home() {
               <th scope="col">Payment Status</th>
               <th scope="col">View Order</th>
               <th scope="col">Total</th>
+              <th scope="col">Payment Method</th>
               <th scope="col">Delete Order</th>
             </tr>
           </thead>
@@ -150,36 +169,44 @@ function Home() {
             <tr className="table-row">
               <th scope="row">{i++}</th>
               <td>{data.full_name}</td>
-              <td>karnika621@gmail.com</td>
+              <td>{data.userEmail}</td>
               <td>
-                  <select name="OrderStatus" id="order-status">
-                      <option defaultValue='currentStatusOrder'>{data.orderStatus}</option>
-                  <option value='completed'>Completed</option>
-                        <option value='preparing'>Preparing</option>
-                      <option value='delivered'>Delivered</option>
-                      <option value='canceled'>Canceled</option>
+                  <select name="OrderStatus" id="order-status" onChange={handleOrderStatus}>
+                      <option defaultValue='CurrentStatusOrder'>{data.orderStatus}</option>
+                  <option value='Completed'>Completed</option>
+                        <option value='Preparing'>Preparing</option>
+                      <option value='Delivered'>Delivered</option>
+                      <option value='Canceled'>Canceled</option>
                   </select>
+                  <button style={{backgroundColor: "white", border:"none"}} onClick={() => updateOrderStatus(data._id)}>
+                  <Create style={{color: "grey"}}/>
+                </button>
               </td>
               <td>
           
               
-                  <select name="PaymentStatus" id="payment-status">
+                  <select name="PaymentStatus" id="payment-status" onChange={handlePaymentStatus}>
                     <option defaultValue="currentStatus">{data.paymentStatus}</option>
-                    { getOrder.paymentStatus === 'Unpaid' ?
-                    <option value='paid'>Paid</option>:
-                          <option value='unpaid'>Unpaid</option>
+                    { data.paymentStatus === 'Unpaid' ?
+                    <option value='Paid'>Paid</option>:
+                          <option value='Unpaid'>Unpaid</option>
 
                     }
                           
-                      </select></td>
+                      </select>
+                      <button style={{backgroundColor: "white", border:"none"}} onClick={() => updatePaymentStatus(data._id)}>
+                  <Create style={{color: "grey"}}/>
+                </button>
+                </td>
               <td>
               <button className="btn btn-success">
                   <i class="fas fa-eye"></i>
                 </button>
               </td>
               <td>{data.totalPrice}</td>
+              <td>{data.paymentMethod}</td>
               <td className="view-edit-delete">
-                <button className="btn btn-danger">
+                <button className="btn btn-danger" onClick={() => deleteUser(data._id)}>
                   <i class="fas fa-trash"></i>
                 </button>
               </td>

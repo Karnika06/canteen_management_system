@@ -90,11 +90,11 @@ export default function Login() {
         {/* <div className='container'> */}
 
         <div className="login-content">
-          {Object.keys(errors).length === 0 && isSubmit ? (
+          {/* {Object.keys(errors).length === 0 && isSubmit ? (
             <div className="successful">Logged In Successfully</div>
           ) : (
             <div></div>
-          )}
+          )} */}
           <div className="login-form">
             <h2 className="form-title">Log in</h2>
             <form className="form-content" id="register-form" onSubmit={loginSubmit} >

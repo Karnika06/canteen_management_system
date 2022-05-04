@@ -2,10 +2,14 @@ import "./Navbar.css";
 import { useState } from "react";
 import useViewport from "../../viewport/useViewport";
 import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Navbar() {
   const { isMobile, isTablet } = useViewport();
   const [showMobileView, setShowMobileView] = useState(false);
+  const { loading, error, isAuthenticated, User } = useSelector(
+    (state) => state.user
+  );
 
   return (
     <div className="top-bar">
@@ -54,12 +58,21 @@ export default function Navbar() {
           className="signUpRegister"
           style={{ display: isMobile ? "none" : "inline" ,width:"70%"}}
         >
+          {isAuthenticated ?
           <NavLink
+          to="/"
+          style={{ textDecoration: "none", color: "white" }}
+        >
+          Log out
+        </NavLink>
+           :
+           <NavLink
             to="/login"
             style={{ textDecoration: "none", color: "white" }}
           >
             Log in
           </NavLink>
+          }
         </button>
         <div className="Menu" style={{ display: isMobile ? "inline" : "none" }}>
           <i class="fa-solid fa-bars" style={{ color: "white" }}></i>
