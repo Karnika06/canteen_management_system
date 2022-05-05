@@ -60,6 +60,7 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
 
 //forgot password
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
+  console.log(req);
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
