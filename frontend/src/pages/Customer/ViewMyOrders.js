@@ -4,8 +4,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 
-
-function ViewOrder() {
+function ViewMyOrders() {
 
     const {id} = useParams("")
   const [getOrderDetails, setOrderDetails] = useState([])
@@ -42,6 +41,7 @@ function ViewOrder() {
       useEffect (() => {
         getData()
       },[])
+
   return (
     <div className="main-order-table" style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", alignContent:"center"}}>
     <h2 style={{padding:"20px"}}>Order Details</h2>
@@ -118,4 +118,4 @@ function ViewOrder() {
   )
 }
 
-export default ViewOrder
+export default ViewMyOrders

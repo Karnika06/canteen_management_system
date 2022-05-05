@@ -44,9 +44,34 @@ function OrderNow() {
       console.log(data)
       if(data.success === true){
         alert("Your order is confirmed!!");
+        updateQuantity(data.order);
         navigate('/mukteshwari')
       }else{
         alert("Order failed!!")
+      }
+      
+    }).catch(err => {
+      console.log(err)
+    })
+
+  };
+
+  const updateQuantity  = async (order) => {
+    
+
+    await fetch(`http://localhost:4000/api/v1/admin/order/${order._id}`,{
+      method: "PUT",
+      headers:{
+        authorization: User.token,
+        "Content-Type" : "application/json"
+      },
+      
+    }).then(res => res.json()).then(data => {
+      console.log(data)
+      if(data.success === true){
+        console.log("Quantity updated")
+      }else{
+        console.log("failed!!")
       }
       
     }).catch(err => {

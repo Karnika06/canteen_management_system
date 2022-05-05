@@ -79,7 +79,7 @@ export const userReducer = (state = { User: {} }, action) => {
   }
 };
 
-export const forgotReduer = (state = { User: {} }, action) =>{
+export const forgotReducer = (state = { User: {} }, action) =>{
   switch (action.type) {
     case FORGOT_REQUEST:
       return {

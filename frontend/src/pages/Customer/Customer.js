@@ -5,6 +5,7 @@ import MyOrders from './MyOrders'
 import SendFeedback from './SendFeedback'
 import UpdateProfile from './UpdateProfile'
 import OrderNow from './OrderNow'
+import ViewMyOrders from './ViewMyOrders'
 
 function Customer() {
   return (
@@ -17,6 +18,7 @@ function Customer() {
           <Route path = "/myProfile" element={<UpdateProfile/>}/>
           
           <Route path = "/ordernow" element={<OrderNow/>}/>
+          <Route path = "/view-order/:id" element={<ViewMyOrders/>}/>
         </Routes>
     </>
   )

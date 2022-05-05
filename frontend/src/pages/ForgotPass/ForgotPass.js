@@ -6,31 +6,50 @@ import { clearErrors, forgotPassword } from '../../actions/userAction';
 
 function ForgotPass() {
 	const dispatch = useDispatch();
-	const { error, message, loading } = useSelector(state => state.forgotReduer);
+	const { error, message, loading } = useSelector(state => state.forgotReducer);
 
 	const [email, setEmail] = useState("");
-	const handleSubmit = (e) => {
+	const handleSubmit = async(e) => {
+    
 		e.preventDefault();
-		const myForm = new FormData();
-		myForm.set("email ", email);
-		dispatch(forgotPassword(myForm));
+		console.log(email)
+		await fetch("http://localhost:4000/api/v1/password/forgot",{
+      method: "POST",
+      headers:{
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify({
+        email
+      })
+    }).then(res => res.json()).then(data => {
+      console.log(data)
+      if(data.success === true){
+        alert("Check your mail!!");
+      }else{
+        alert("Password reset failed!!")
+      }
+    //   navigate('/')
+    }).catch(err => {
+      console.log(err)
+    })
+		// const myForm = new FormData();
+		// myForm.set("email ", email);
+		// dispatch(forgotPassword(email));
 	};
 
-	useEffect(() => {
+	// useEffect(() => {
 	
-		if (error) {
-
-			alert(error);
-			dispatch(clearErrors());
-
-		}
-		if(message){
-			alert(message);
-		}
-	  }, [error , message , dispatch]);
+	// 	if (error) {
+	// 		alert(error);
+	// 		dispatch(clearErrors());
+	// 	}
+	// 	if(message){
+	// 		alert(message);
+	// 	}
+	//   }, [error , message , dispatch]);
 
 	return (
-		<div class="row">
+		<div class="forgot-row">
 			<h1>Forgot Password</h1>
 			<h6 class="information-text">Enter your registered email to reset your password.</h6>
 			<div class="form-group">
