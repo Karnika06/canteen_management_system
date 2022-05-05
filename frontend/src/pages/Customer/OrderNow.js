@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CartContainer from "../../components/mukteshwari/js/CartContainer";
+import './Checkout.css';
 
 function OrderNow() {
   const navigate = useNavigate();
