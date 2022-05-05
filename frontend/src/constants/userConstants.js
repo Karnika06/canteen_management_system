@@ -14,3 +14,7 @@ export const LOAD_USER_FAIL = "LOAD_USER_FAIL";
 
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const LOGOUT_FAIL = "LOGOUT_FAIL";
+
+export const FORGOT_REQUEST = "FORGOT_REQUEST";
+export const FORGOT_SUCCESS = "FORGOT_SUCCESS";
+export const FORGOT_FAIL = "FORGOT_FAIL";

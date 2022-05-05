@@ -7,7 +7,8 @@ const {
   updateOrder,
   deleteOrder,
   updateOrderStatus,
-  updatePaymentStatus
+  updatePaymentStatus,
+  cancelOrder
 } = require("../controllers/orderController");
 const router = express.Router();
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
@@ -25,7 +26,7 @@ router
 
 router
   .route("/admin/order/:id")
-  .put(isAuthenticatedUser, authorizeRoles("admin"), updateOrder)
+  .put(isAuthenticatedUser, updateOrder)
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteOrder);
 
   router
@@ -34,5 +35,8 @@ router
   
   router
   .route("/admin/paymentStatus/:id").put(isAuthenticatedUser, authorizeRoles("admin"), updatePaymentStatus)
+
+  router
+  .route("/customer/cancelOrder/:id").put(isAuthenticatedUser, cancelOrder)
 
 module.exports = router;

@@ -1,11 +1,13 @@
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import axios from 'axios';import { NavLink } from "react-router-dom";
+import axios from 'axios';
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Create, Delete, RemoveRedEye } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import Moment from 'react-moment'
+
 
 
 
@@ -64,7 +66,7 @@ function OrderHistory() {
           {getOrder && getOrder.map((data,key) => (
             <tr className="table-row">
               <th scope="row">{i++}</th>
-              <td>karnika621@gmail.com</td>
+              <td>{data.userEmail}</td>
               <td>
                   {data._id}
               </td>
@@ -72,9 +74,14 @@ function OrderHistory() {
                   {data.contact_no}
             </td>
               <td>
+              <NavLink
+              exact
+              activeClassName="active_class"
+              to={`/admin/view-order/${data._id}`}>
               <button className="btn btn-success">
                   <i class="fas fa-eye"></i>
                 </button>
+                </NavLink>
               </td>
               <td>{data.totalPrice}</td>
               <td><Moment format="MM/DD/YYYY" date={data.paidAt}/></td>

@@ -131,14 +131,14 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   }
 
   order.items.forEach(async (order) => {
-    await updateStock(order.fooditem, order.quantity);
+    await updateStock(order._id, order.qty);
   });
 
   order.orderStatus = req.body.orderStatus;
 
-  if (req.body.orderStatus === "Delivered") {
-    order.deliveredAt = Date.now();
-  }
+  // if (req.body.orderStatus === "Delivered") {
+  //   order.deliveredAt = Date.now();
+  // }
 
   await order.save({ validateBeforeSave: false });
 
@@ -147,6 +147,7 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+//update stock
 async function updateStock(id, quantity) {
   const fooditem = await Food.findById(id);
 
@@ -169,3 +170,26 @@ exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
+
+exports.cancelOrder = catchAsyncErrors(async (req, res, next) => {
+  const cancelOrd = {
+  
+    orderStatus: req.body.orderStatus,
+  };
+
+  const cancel = await Order.findByIdAndUpdate(req.params.id, cancelOrd, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  if (!cancel) {
+    return next(
+      new ErrorHandler(`Order does not exist with id: ${req.params.id}`)
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+  });
+})
