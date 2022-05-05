@@ -104,8 +104,12 @@ function OrderNow() {
         //postData
         console.log(User.token)
         console.log(isAuthenticated)
+        if(!cart){
         if (isAuthenticated) 
           PostData();
+        }
+        else
+        alert("You can't order, Your cart is empty!!")
       }
     }, [errors]);
 
