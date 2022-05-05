@@ -1,7 +1,9 @@
+
 import React from 'react'
 import axios from 'axios';
 import {useState, useEffect} from 'react'
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function UpdateProfile() {
 
@@ -121,11 +123,12 @@ return errors;
 
 
   return (
-    <div className='main'>
-        <div className='form_container'>
-            <h2>My Profile</h2>
-            <table className="form_table">
+    <div className="main">
+      <div className="form_container">
+        <h2>My Profile</h2>
+        <table className="form_table">
           <tbody>
+
           <tr className='form-row'>
             <td className="form-label">Email Id</td>
             {/* <input className='form-input' type="email" placeholder='Enter email ID'></input> */}
@@ -142,18 +145,43 @@ return errors;
             <td className="form-label">Contact Number</td>
             <input className='form-input' onChange={handleInput} name="contact_no" value={userDetails.contact_no} type="email" placeholder='Enter your Contact Number'></input>
             {errors.contact_no && (<p className='validation-msgs'>{errors.contact_no}</p>)}
+</tr>
+            <tr className="form-row">
+              <td className="form-label">Your Name</td>
+              <input
+                className="form-input"
+                type="text"
+                placeholder="Enter your full name"
+              ></input>
             </tr>
-            
+
+            <tr className="form-row">
+              <td className="form-label">Email Id</td>
+              <input
+                className="form-input"
+                type="email"
+                placeholder="Enter email ID"
+              ></input>
+            </tr>
+            <tr className="form-row">
+              <td className="form-label">Contact Number</td>
+              <input
+                className="form-input"
+                type="email"
+                placeholder="Enter your Contact Number"
+              ></input>
+            </tr>
           </tbody>
         </table>
         <div className="add_btn mt-2">
+
           <button className="btn-feedback " onClick={handleSubmit} style={{marginRight: "8px"}}>Edit Profile</button>
           <button className="btn-feedback">Change Password</button>
+
         </div>
-            
-        </div>
-        </div>
-  )
+      </div>
+    </div>
+  );
 }
 
-export default UpdateProfile
+export default UpdateProfile;

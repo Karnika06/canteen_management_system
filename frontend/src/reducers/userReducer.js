@@ -14,6 +14,9 @@ import {
   FORGOT_FAIL,
   FORGOT_REQUEST,
   FORGOT_SUCCESS,
+  RESET_PASSWORD_FAIL,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS
 } from "../constants/userConstants";
 
 export const userReducer = (state = { User: {} }, action) => {
@@ -79,36 +82,44 @@ export const userReducer = (state = { User: {} }, action) => {
   }
 };
 
-export const forgotReducer = (state = { User: {} }, action) =>{
+export const forgotReducer = (state = {}, action) => {
   switch (action.type) {
     case FORGOT_REQUEST:
+    case RESET_PASSWORD_REQUEST:
       return {
-        ...state ,
-        loading : true,
-        error : null,
+        ...state,
+        loading: true,
+        error: null,
       };
 
     case FORGOT_SUCCESS:
       return {
-        loading: false,
         ...state,
-        message : action.payload,
+        loading: false,
+        message: action.payload,
       };
 
-      case FORGOT_FAIL:
+    case RESET_PASSWORD_SUCCESS:
       return {
-        loading: false,
         ...state,
-        error : action.payload,
+        loading: false,
+        success: action.payload,
       };
 
-      case CLEAR_ERRORS:
+    case FORGOT_FAIL:
+    case RESET_PASSWORD_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case CLEAR_ERRORS:
       return {
         ...state,
         error: null,
       };
-
-      default:
+    default:
       return state;
-    }
-}
+  }
+};
