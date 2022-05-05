@@ -62,7 +62,7 @@ function MyOrders() {
       if(res.data.success == true){
 
         alert("Order Cancelled!!");
-        //getData()
+        getData()
         navigate('/mukteshwari/myorders')
       }else{
         alert("Order status update failed!! Try again!")
