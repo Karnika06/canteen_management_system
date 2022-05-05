@@ -19,6 +19,8 @@ import Customer from "./pages/Customer/Customer";
 
 import { loadUser } from "./actions/userAction";
 import store from "./store";
+import ResetPassword from "./pages/ResetPass/ResetPass";
+import UpdatePassword from "./pages/UpdatePassword/UpdatePassword";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -39,6 +41,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/mukteshwari/*" element={<Customer />} />
             <Route path="/admin/*" element={<AdminMukteshwari />} />
+            <Route path="/password/update" element={<UpdatePassword />} />
+            <Route path="/password/reset/:token" element={<ResetPassword />} />
             <Route path="/forgot-password" element={<ForgotPass/>} />
           </Routes>
         </Router>
