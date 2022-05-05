@@ -14,6 +14,9 @@ import {
   FORGOT_FAIL,
   FORGOT_REQUEST,
   FORGOT_SUCCESS,
+  RESET_PASSWORD_FAIL,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
 } from "../constants/userConstants";
 
 import axios from "axios";
@@ -29,17 +32,17 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     );
-    console.log(data)
-    if(data.success === true){
-      alert("You have successfully logged in!!")
-    }else{
-      alert("Logging in failed!!",data.message)
+    console.log(data);
+    if (data.success === true) {
+      alert("You have successfully logged in!!");
+    } else {
+      alert("Logging in failed!!", data.message);
     }
 
     dispatch({ type: LOGIN_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
-    alert("Log in failed!!")
+    alert("Log in failed!!");
   }
 };
 
@@ -88,12 +91,33 @@ export const clearErrors = () => async (dispatch) => {
 
 export const forgotPassword = (email) => async (dispatch) => {
   try {
-    dispatch({type : FORGOT_REQUEST})
+    dispatch({ type: FORGOT_REQUEST });
     const config = { headers: { "Content-Type": "application/json" } };
-    const{data} = await axios.post(`/api/v1/password/forgot` , email , config);
+    const { data } = await axios.post(`/api/v1/password/forgot`, email, config);
 
-    dispatch({ type: FORGOT_SUCCESS , payload : data.message });
+    dispatch({ type: FORGOT_SUCCESS, payload: data.message });
   } catch (error) {
     dispatch({ type: FORGOT_FAIL, payload: error.response.data.message });
+  }
+};
+
+export const resetPassword = (token, passwords) => async (dispatch) => {
+  try {
+    dispatch({ type: RESET_PASSWORD_REQUEST });
+
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.put(
+      `/api/v1/password/reset/${token}`,
+      passwords,
+      config
+    );
+
+    dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data.success });
+  } catch (error) {
+    dispatch({
+      type: RESET_PASSWORD_FAIL,
+      payload: error.response.data.message,
+    });
   }
 };
